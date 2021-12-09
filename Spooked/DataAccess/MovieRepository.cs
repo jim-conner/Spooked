@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Spooked.Models;
 
 namespace Spooked.DataAccess
 {
@@ -19,10 +20,22 @@ namespace Spooked.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var movies = db.Query<Movie>(@"Select * From Movies");
+            var movies = db.Query<Movie>(@"Select * From Movie");
 
             return movies;
         }
 
+        internal Movie GetByImdbId(string imdbId)
+        {
+            using var db = new SqlConnection(_connectionString);
+            {
+                var movieSql = @"Select *
+                                From Movie
+                                Where ImdbId = @imdbId";
+
+                var singleMovie = db.QuerySingleOrDefault<Movie>(movieSql, new { imdbId = imdbId });
+                return singleMovie;
+            }
+        }
     }
 }

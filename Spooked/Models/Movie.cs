@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Spooked.Controllers
+namespace Spooked.Models
 {
     public class Movie
     {
