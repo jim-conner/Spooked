@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 
-namespace Spooked.Controllers
+namespace Spooked.DataAccess
 {
     public class MovieRepository
     {
