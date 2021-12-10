@@ -1,3 +1,7 @@
+const localDbConfig = {
+  localDB: process.env.REACT_APP_localDB
+};
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -9,4 +13,4 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-export default firebaseConfig;
+export { localDbConfig, firebaseConfig };

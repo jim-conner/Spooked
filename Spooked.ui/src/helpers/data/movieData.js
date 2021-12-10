@@ -1,10 +1,10 @@
 import axios from 'axios';
-import firebaseConfig from '../config';
+import { localDbConfig } from '../config';
 
-const dbUrl = firebaseConfig.databaseURL;
+const dbUrl = localDbConfig.localDB;
 
 const getAllMovies = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/users`)
+  axios.get(`${dbUrl}/movies`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));
 });

@@ -43,7 +43,7 @@ function NavBar() {
             <Form inline>
                 <InputGroup>
                   <Input
-                    size="sm"
+                    bsSize="sm"
                     type="search"
                     placeholder="Find a movie"
                   />
