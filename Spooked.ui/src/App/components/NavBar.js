@@ -7,6 +7,16 @@ import {
   NavbarBrand,
   NavbarToggler,
   NavItem,
+  // Button,
+  Form,
+  // FormGroup,
+  // FormText,
+  // FormFeedback,
+  // Label,
+  Input,
+  Button,
+  InputGroup,
+  // Button,
 } from 'reactstrap';
 // import PropTypes from 'prop-types'
 
@@ -18,7 +28,7 @@ function NavBar() {
     <div>
       <Navbar
         color='dark'
-        expand='md'
+        expand='sm'
         dark
       >
         <NavbarBrand
@@ -36,6 +46,22 @@ function NavBar() {
                 Browse
               </Link>
             </NavItem>
+            <Form inline>
+                <InputGroup>
+                  <Input
+                    size="sm"
+                    type="search"
+                    placeholder="Find a movie"
+                  />
+                  <Button
+                  color='warning'
+                  size="sm"
+                  >
+                  <i className="fas fa-search"></i>
+                  </Button>
+                </InputGroup>
+
+            </Form>
           </Nav>
         </Collapse>
       </Navbar>

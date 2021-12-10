@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Card, CardBody, CardImg, CardText, CardTitle
+  Button,
+  Card, CardBody, CardFooter, CardImg, CardSubtitle, CardText, CardTitle
 } from 'reactstrap';
 // import PropTypes from 'prop-types';
 
@@ -12,12 +13,18 @@ function MovieCard() {
       alt="Card image cap"
       src="https://picsum.photos/318/180"
       top
-      width="100%"
+      // width="100%"
     />
     <CardBody>
       <CardTitle tag="h5">
         Card Title
       </CardTitle>
+      <CardSubtitle
+        className="mb-2 text-muted"
+        tag="h6"
+      >
+        Card subtitle
+      </CardSubtitle>
       <CardText>
         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
       </CardText>
@@ -26,28 +33,15 @@ function MovieCard() {
           Last updated 3 mins ago
         </small>
       </CardText>
-    </CardBody>
-  </Card>
-  <Card>
-    <CardBody>
-      <CardTitle tag="h5">
-        Card Title
-      </CardTitle>
-      <CardText>
-        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      </CardText>
-      <CardText>
-        <small className="text-muted">
+      <Button>
+        Button
+      </Button>
+      <CardFooter className="text-muted">
+      <small className="text-muted">
           Last updated 3 mins ago
         </small>
-      </CardText>
+    </CardFooter>
     </CardBody>
-    <CardImg
-      alt="Card image cap"
-      bottom
-      src="https://picsum.photos/318/180"
-      width="100%"
-    />
   </Card>
 </div>
   );

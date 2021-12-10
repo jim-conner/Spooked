@@ -1,13 +1,22 @@
 import React from 'react';
-import { Container } from 'reactstrap';
-import MovieCard from '../components/MovieCard';
 // import PropTypes from 'prop-types';
+import { Container, CardGroup } from 'reactstrap';
+import MovieCard from '../components/MovieCard';
+import '../App.scss';
 
 function Home() {
   return (
     <Container>
-      <h3>Home.js</h3>
-      <MovieCard/>
+      <div className='homeHeader'>
+        Home.js
+      </div>
+      <div className='homeContainer'>
+        <CardGroup>
+          <MovieCard/>
+        </CardGroup>
+
+      </div>
+
     </Container>
   );
 }
