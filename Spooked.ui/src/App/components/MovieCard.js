@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  Button,
-  Card, CardBody, CardFooter, CardImg, CardSubtitle, CardText, CardTitle
+  Card, CardBody, CardFooter, CardImg, CardSubtitle, CardTitle
 } from 'reactstrap';
 // import PropTypes from 'prop-types';
 
@@ -12,32 +11,24 @@ function MovieCard() {
     <CardImg
       alt="Card image cap"
       src="https://picsum.photos/318/180"
+      // src={poster}
       top
-      // width="100%"
     />
     <CardBody>
       <CardTitle tag="h5">
-        Card Title
+        {/* {title} */}Title
       </CardTitle>
       <CardSubtitle
         className="mb-2 text-muted"
         tag="h6"
       >
-        Card subtitle
+        Year
       </CardSubtitle>
-      <CardText>
-        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-      </CardText>
-      <CardText>
-        <small className="text-muted">
-          Last updated 3 mins ago
-        </small>
-      </CardText>
-      <Button>
+      {/* <Button>
         Button
-      </Button>
+      </Button> */}
       <CardFooter className="text-muted">
-      <small className="text-muted">
+        <small className="text-muted">
           Last updated 3 mins ago
         </small>
     </CardFooter>

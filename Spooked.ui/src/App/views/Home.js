@@ -12,7 +12,9 @@ function Home() {
       </div>
       <div className='homeContainer'>
         <CardGroup>
-          <MovieCard/>
+          <MovieCard
+            key='imdbId'
+          />
         </CardGroup>
 
       </div>

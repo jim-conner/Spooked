@@ -7,16 +7,10 @@ import {
   NavbarBrand,
   NavbarToggler,
   NavItem,
-  // Button,
   Form,
-  // FormGroup,
-  // FormText,
-  // FormFeedback,
-  // Label,
   Input,
   Button,
   InputGroup,
-  // Button,
 } from 'reactstrap';
 // import PropTypes from 'prop-types'
 
@@ -60,7 +54,6 @@ function NavBar() {
                   <i className="fas fa-search"></i>
                   </Button>
                 </InputGroup>
-
             </Form>
           </Nav>
         </Collapse>
