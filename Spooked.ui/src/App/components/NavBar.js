@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
-  Collapse, Navbar, Nav, NavbarBrand, NavbarToggler, NavItem
+  Collapse,
+  Navbar,
+  Nav,
+  NavbarBrand,
+  NavbarToggler,
+  NavItem,
 } from 'reactstrap';
 // import PropTypes from 'prop-types'
 
@@ -11,31 +16,30 @@ function NavBar() {
   const toggle = () => setIsOpen(!isOpen);
   return (
     <div>
-    <Navbar
-      color="faded"
-      dark
-    >
-      <NavbarBrand
-        className="me-auto"
-        to="/"
+      <Navbar
+        color='dark'
+        expand='md'
+        dark
       >
-        reactstrap
-      </NavbarBrand>
-      <NavbarToggler
-        className="me-2"
-        onClick={toggle}
-      />
-      <Collapse navbar>
-        <Nav navbar>
-          <NavItem>
-            <NavLink to="/browse/">
-              Browse
-            </NavLink>
-          </NavItem>
-        </Nav>
-      </Collapse>
-    </Navbar>
-  </div>
+        <NavbarBrand
+          href='/' className='me-auto'
+        >
+          <i className="fas fa-ghost" style={{ color: 'orange' }}/> SPOOKED!
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav
+            className='nav-bar me-auto' navbar
+          >
+            <NavItem>
+              <Link className='nav-link' to='/browse'>
+                Browse
+              </Link>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
   );
 }
 
