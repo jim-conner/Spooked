@@ -8,6 +8,7 @@ namespace Spooked.Services
 {
     public interface IOmdbAPIService
     {
-        Task<List<OmdbAPIMap>> GetOmdbMovieById(string imdbId);
+        // if i wanna do a list for SEARCH add it here
+        Task<OmdbAPIResponse> GetOmdbMovieById(string imdbId);
     }
 }

@@ -14,6 +14,8 @@ namespace Spooked.Models
         public string Poster { get; set; }
         public int SubGenreId { get; set; }
         public bool Watched { get; set; }
+
+
     }
 
 }

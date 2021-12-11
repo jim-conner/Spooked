@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Spooked.Models
 {
-    public class OmbdAPIKey
+    public class OmdbAPIKey
     {
         public string ApiKey { get; set; }
     }

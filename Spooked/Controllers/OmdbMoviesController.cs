@@ -25,10 +25,11 @@ namespace Spooked.Controllers
         }
 
         //get movie from OmdbAPI
-        public IActionResult GetMovieFromOmdbAPIByImdbId(string imdbId)
+        [HttpGet]
+        public async Task<IActionResult> GetByImdbId(string imdbId)
         {
 
-            var singleMovie = _omdbService.GetOmdbMovieById(imdbId);
+            var singleMovie = await _omdbService.GetOmdbMovieById(imdbId);
 
             if (singleMovie == null)
             {

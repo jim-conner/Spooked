@@ -13,9 +13,9 @@ namespace Spooked.Models
 
         //[JsonPropertyName("list")]
         //public List<OmdbMovie> OmdbMovies { get; set; }
-        [JsonPropertyName("ImdbId")]
-        public string Title { get; set; }
         [JsonPropertyName("Title")]
+        public string Title { get; set; }
+        [JsonPropertyName("imdbID")]
         public string ImdbId { get; set; }
         [JsonPropertyName("Year")]
         public string Year { get; set; }
@@ -25,7 +25,7 @@ namespace Spooked.Models
         public string Genre { get; set; }
         [JsonPropertyName("Poster")]
         public string Poster { get; set; }
-        [JsonPropertyName("ImdbRating")]
+        [JsonPropertyName("imdbRating")]
         public string ImdbRating { get; set; }
 
     }

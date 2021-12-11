@@ -34,7 +34,7 @@ namespace Spooked
 
             // Adding OmdbAPI Key
             var ombdApiConfig = Configuration.GetSection("OmdbAPIKey");
-            services.Configure<OmbdAPIKey>(ombdApiConfig);
+            services.Configure<OmdbAPIKey>(ombdApiConfig);
 
             //registering method to allow for dependency injection
             services.AddScoped<IOmdbAPIService, OmdbAPIService>();
