@@ -9,7 +9,7 @@ function MovieCard({ movieObj }) {
     <div>
   <Card>
     <CardImg
-      alt="Card image cap"
+      alt="Movie Poster"
       // src="https://picsum.photos/318/180"
       src={movieObj.poster}
       // top
