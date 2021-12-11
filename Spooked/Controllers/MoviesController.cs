@@ -12,6 +12,7 @@ namespace Spooked.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
+
         private MovieRepository _repo;
 
         public MoviesController(MovieRepository repo)
@@ -25,6 +26,7 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
+        // get movie from localDB
         [HttpGet("movie/{imdbId}")]
         public IActionResult GetMovieByImdbId(string imdbId)
         {

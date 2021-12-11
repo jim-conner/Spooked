@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Spooked.DataAccess;
+using Spooked.Models;
+using Spooked.Services;
 
 namespace Spooked
 {
@@ -27,7 +29,15 @@ namespace Spooked
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //default
             services.AddSingleton<IConfiguration>(Configuration);
+
+            // Adding OmdbAPI Key
+            var ombdApiConfig = Configuration.GetSection("OmdbAPIKey");
+            services.Configure<OmbdAPIKey>(ombdApiConfig);
+
+            //registering method to allow for dependency injection
+            services.AddScoped<IOmdbAPIService, OmdbAPIService>();
 
             services.AddTransient<MovieRepository>();
 
