@@ -11,7 +11,7 @@ using Spooked.Services;
 
 namespace Spooked.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/omdbMovies/")]
     [ApiController]
     public class OmdbMoviesController : ControllerBase
     {

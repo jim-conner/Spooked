@@ -5,8 +5,14 @@ const dbUrl = localDbConfig.localDB;
 
 const getAllMovies = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/movies`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((resp) => resolve(Object.values(resp.data)))
     .catch((error) => reject(error));
 });
 
-export default getAllMovies;
+const getSingleMovie = (imdbId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/movies/movie/${imdbId}`)
+    .then((resp) => resolve(console.warn(resp.data)))
+    .catch((error) => reject(error));
+});
+
+export { getAllMovies, getSingleMovie };

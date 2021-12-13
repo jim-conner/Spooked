@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, CardGroup } from 'reactstrap';
 import MovieCard from '../components/MovieCard';
 import '../App.scss';
-import getAllMovies from '../../helpers/data/movieData';
+import { getAllMovies } from '../../helpers/data/movieData';
 
 function Home() {
   const [movies, setMovies] = useState([]);

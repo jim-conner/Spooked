@@ -3,16 +3,28 @@ import PropTypes from 'prop-types';
 import {
   Modal, ModalHeader, CardImg, CardImgOverlay, CardText, CardTitle, CardBody, ModalBody,
 } from 'reactstrap';
+// import { getSingleMovie } from '../../helpers/data/movieData';
 
 function MovieDetailModal({ movieObj }) {
+  // const [idToUpdate, setIdToUpdate] = useState('');
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
+  // const handleClick = (movieId, e) => {
+  //   e.preventDefault();
+  //   toggle();
+  //   if (movieId != null) {
+  //     // setIdToUpdate(movieId);
+  //     getSingleMovie(movieId);
+  //   }
+  // };
+
   return (
     <CardImgOverlay
       style={{ cursor: 'pointer' }}
-      onClick={toggle}
+      // onClick={toggle}
+      // onClick={(e) => handleClick(movieObj.Id, e)}
     >
       <Modal
       isOpen={modal}
@@ -30,7 +42,7 @@ function MovieDetailModal({ movieObj }) {
         </CardSubtitle> */}
   <ModalBody>
     <CardImg
-      alt="Movie Details"
+      alt="Movie Detail"
       src="https://picsum.photos/318/180"
       top
       width="100%"
