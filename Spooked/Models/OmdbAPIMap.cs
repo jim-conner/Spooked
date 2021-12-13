@@ -14,6 +14,6 @@ namespace Spooked.Models
         public string Genre { get; set; }
         public string Poster { get; set; }
         public string ImdbRating { get; set; }
-        //does my map have to return the actual whole json object from api?
+
     }
 }

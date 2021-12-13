@@ -19,6 +19,8 @@ namespace Spooked.Models
         public string ImdbId { get; set; }
         [JsonPropertyName("Year")]
         public string Year { get; set; }
+        [JsonPropertyName("Plot")]
+        public string Plot { get; set; }
         [JsonPropertyName("Rated")]
         public string Rated { get; set; }
         [JsonPropertyName("Genre")]
