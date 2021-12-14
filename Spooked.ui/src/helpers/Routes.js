@@ -19,11 +19,11 @@ function Routes() {
         component={() => <Home
         />}
       />
-       {/* <Route
+       <Route
         exact path='/watchlist'
         component={() => <Home
         />}
-      /> */}
+      />
     </Switch>
     </>
   );

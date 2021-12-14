@@ -7,10 +7,6 @@ import {
   NavbarBrand,
   NavbarToggler,
   NavItem,
-  Form,
-  Input,
-  Button,
-  InputGroup,
 } from 'reactstrap';
 // import PropTypes from 'prop-types'
 
@@ -28,7 +24,7 @@ function NavBar() {
         <NavbarBrand
           href='/' className='me-auto'
         >
-          <i className="fas fa-ghost" style={{ color: 'orange' }}/> SPOOKED!
+          <i className="fas fa-ghost" style={{ color: 'orangered' }}/> SPOOKED!
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -37,24 +33,14 @@ function NavBar() {
           >
             <NavItem>
               <Link className='nav-link' to='/browse'>
-                Browse
+                {<i className="fas fa-spider"></i>} Browse
               </Link>
             </NavItem>
-            <Form inline>
-                <InputGroup>
-                  <Input
-                    bsSize="sm"
-                    type="search"
-                    placeholder="Find a movie"
-                  />
-                  <Button
-                  color='warning'
-                  size="sm"
-                  >
-                  <i className="fas fa-search"></i>
-                  </Button>
-                </InputGroup>
-            </Form>
+            <NavItem>
+              <Link className='nav-link' to='/watchlist'>
+              <i className="fas fa-mask"></i> Watch List
+              </Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
