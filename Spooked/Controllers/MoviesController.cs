@@ -4,13 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Spooked.DataAccess;
 
 namespace Spooked.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/movies")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
+
         private MovieRepository _repo;
 
         public MoviesController(MovieRepository repo)
@@ -23,5 +25,31 @@ namespace Spooked.Controllers
         {
             return Ok(_repo.GetAll());
         }
+
+        [HttpGet("movieId/{id}")]
+        public IActionResult getMovieById(Guid id)
+        {
+            var singleMovie = _repo.GetById(id);
+
+            if (singleMovie == null)
+            {
+                return NotFound($"No movie found with MovieId: {id}.");
+            }
+            return Ok(singleMovie);
+        }
+
+        [HttpGet("imdbId/{imdbId}")]
+        public IActionResult GetMovieByImdbId(string imdbId)
+        {
+            var singleMovie = _repo.GetByImdbId(imdbId);
+
+            if (singleMovie == null)
+            {
+                return NotFound($"No movie found with ImdbId: {imdbId}.");
+            }
+            return Ok(singleMovie);
+        }
+
+
     }
 }

@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Spooked.DataAccess;
+using Spooked.Models;
+using Spooked.Services;
 
 namespace Spooked
 {
@@ -26,6 +29,17 @@ namespace Spooked
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //default
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            // Adding OmdbAPI Key
+            var ombdApiConfig = Configuration.GetSection("OmdbAPIKey");
+            services.Configure<OmdbAPIKey>(ombdApiConfig);
+
+            //registering method to allow for dependency injection
+            services.AddScoped<IOmdbAPIService, OmdbAPIService>();
+
+            services.AddTransient<MovieRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -38,11 +52,13 @@ namespace Spooked
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            {   
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Spooked v1"));
             }
+
+            app.UseCors(cfg => cfg.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
