@@ -9,10 +9,27 @@ const getAllMovies = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getSingleMovie = (imdbId) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/movies/movie/${imdbId}`)
-    .then((resp) => resolve(console.warn(resp.data)))
+const getSingleMovie = (id) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/movies/movieId/${id}`)
+    .then((resp) => resolve(resp.data))
     .catch((error) => reject(error));
 });
 
-export { getAllMovies, getSingleMovie };
+// OmdbAPI Movies
+const getOmdbByImdbId = (imdbId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/omdbmovies/${imdbId}`)
+    .then((resp) => resolve(resp.data))
+    .catch((error) => reject(error));
+});
+
+const returnLocalOmdb = (id, imdbId) => new Promise((resolve, reject) => {
+  const getLocalArray = getSingleMovie(id);
+  const getOmdbyArray = getOmdbByImdbId(imdbId);
+  Promise.all([getLocalArray, getOmdbyArray])
+    .then((resp) => resolve(({ ...resp[0], ...resp[1] })))
+    .catch((error) => reject(error));
+});
+
+export {
+  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb
+};

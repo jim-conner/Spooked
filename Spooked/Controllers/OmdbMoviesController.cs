@@ -25,7 +25,7 @@ namespace Spooked.Controllers
         }
 
         //get movie from OmdbAPI
-        [HttpGet]
+        [HttpGet("{imdbId}")]
         public async Task<IActionResult> GetByImdbId(string imdbId)
         {
 

@@ -1,37 +1,27 @@
 import React from 'react';
 import {
-  Button,
   Card, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-// import MovieDetailModal from './MovieDetailModal';
-import { getSingleMovie } from '../../helpers/data/movieData';
+import MovieDetailModal from './MovieDetailModal';
 
 function MovieCard({ movieObj }) {
-  const handleClick = (movieId, e) => {
-    e.preventDefault();
-    // toggle();
-    // if (movieId != null) {
-    // setIdToUpdate(movieId);
-    getSingleMovie(movieId);
-    console.warn(movieId);
-    // }
-  };
-
   return (
     <div>
   <Card>
+    {/* <Button
+      color='transparent'
+      onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
+    > */}
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
       // onClick={(e) => handleClick(movieObj.Id, e)}
     />
-    <Button
-      onClick={(e) => handleClick(movieObj.imdbId, e)}
-    />
-      {/* <MovieDetailModal
+    {/* </Button> */}
+      <MovieDetailModal
         movieObj={movieObj}
-      /> */}
+      />
   </Card>
 </div>
   );

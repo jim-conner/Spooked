@@ -26,8 +26,19 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
-        // get movie from localDB
-        [HttpGet("movie/{imdbId}")]
+        [HttpGet("movieId/{id}")]
+        public IActionResult getMovieById(Guid id)
+        {
+            var singleMovie = _repo.GetById(id);
+
+            if (singleMovie == null)
+            {
+                return NotFound($"No movie found with MovieId: {id}.");
+            }
+            return Ok(singleMovie);
+        }
+
+        [HttpGet("imdbId/{imdbId}")]
         public IActionResult GetMovieByImdbId(string imdbId)
         {
             var singleMovie = _repo.GetByImdbId(imdbId);

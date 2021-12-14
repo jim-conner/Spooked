@@ -25,6 +25,19 @@ namespace Spooked.DataAccess
             return movies;
         }
 
+        internal Movie GetById(Guid Id)
+        {
+            using var db = new SqlConnection(_connectionString);
+            {
+                var movieSql = @"Select *
+                                From Movie
+                                Where Id = @Id";
+
+                var singleMovie = db.QuerySingleOrDefault<Movie>(movieSql, new { Id = Id });
+                return singleMovie;
+            }
+        }
+
         internal Movie GetByImdbId(string imdbId)
         {
             using var db = new SqlConnection(_connectionString);

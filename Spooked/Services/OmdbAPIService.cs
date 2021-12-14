@@ -43,13 +43,12 @@ namespace Spooked.Services
                 var result = JsonSerializer.Deserialize<OmdbAPIResponse>(stringResponse);
 
                 return result;
-
             }
             else
             {
                 throw new HttpRequestException(response.ReasonPhrase);
             }
-
         }
     }
+
 }

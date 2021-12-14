@@ -10,7 +10,6 @@ function Home() {
 
   useEffect(() => {
     getAllMovies().then(setMovies);
-    console.warn(movies);
   }, []);
   return (
     <Container>
