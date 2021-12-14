@@ -18,11 +18,8 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     // if (movieId != null) {
     // setIdToUpdate(movieId);
-    console.warn(movieObj);
     returnLocalOmdb(movieId, imdbId)
-      .then((resp) => console.warn(setFullMovieObj(resp)));
-    // .then((resp) => setFullMovieObj(resp));
-    // console.warn(fullMovieObj);
+      .then((resp) => setFullMovieObj(resp));
     // }
   };
 
@@ -54,18 +51,18 @@ function MovieDetailModal({ movieObj }) {
               className="mb-2 text-muted"
               tag="h6"
             >
-              {fullMovieObj.Year} | {fullMovieObj.Rated}
+              {fullMovieObj.Year} {' | '} {fullMovieObj.Rated}
             </CardSubtitle>
             <CardText>
-              {fullMovieObj.Plot}
-            </CardText>
-            <CardText>
-            <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}______
-             {fullMovieObj.watched === false ? 'unwatched' : 'watched'}_____
+            <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
+             {fullMovieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
              SubGenre: {fullMovieObj.subGenreId}
               {/* <small className="text-muted">
                 Last updated 3 mins ago
               </small> */}
+            </CardText>
+            <CardText>
+              {fullMovieObj.Plot}
             </CardText>
           </CardBody>
         </ModalBody>
