@@ -9,14 +9,16 @@ import SubGenreSelect from '../components/SubGenreSelect';
 
 function Home() {
   const [movies, setMovies] = useState([]);
+  // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState('');
+
 
   useEffect(() => {
     getAllMovies().then(setMovies);
   }, []);
 
-  const filteredMovies = search.length === 0
+  const filteredMoviesByTitle = search.length === 0
     ? movies
     : movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
 
@@ -37,7 +39,7 @@ function Home() {
       <div className='homeContainer'>
         <CardGroup>
           {
-            filteredMovies?.map((movieObj) => (
+            filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
                 key={movieObj.id}
                 movieObj={movieObj}
