@@ -1,4 +1,4 @@
-﻿-- create movie table
+﻿-- create Movie Table
 Create Table dbo.Movie (
 	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	Title varchar(200) NOT NULL,
@@ -8,5 +8,10 @@ Create Table dbo.Movie (
 	Poster nvarchar(4000) NOT NULL,
 	SubGenreId int NOT NULL,
 	Watched bit NOT NULL default 0
+);
 
+-- create SubGenre Table
+Create Table dbo.SubGenre (
+	Id int identity primary key,
+	[Name] varchar(50) NOT NULL,
 );
