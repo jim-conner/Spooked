@@ -5,10 +5,12 @@ import MovieCard from '../components/MovieCard';
 import '../App.scss';
 import { getAllMovies } from '../../helpers/data/movieData';
 import SearchBar from '../components/SearchBar';
+import SubGenreSelect from '../components/SubGenreSelect';
 
 function Home() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState('');
+  const [select, setSelect] = useState('');
 
   useEffect(() => {
     getAllMovies().then(setMovies);
@@ -24,6 +26,12 @@ function Home() {
         <SearchBar
           search={search}
           setSearch={setSearch}
+        />
+      </div>
+      <div className='homeHeader'>
+        <SubGenreSelect
+          select={select}
+          setSelect={setSelect}
         />
       </div>
       <div className='homeContainer'>

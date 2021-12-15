@@ -40,6 +40,7 @@ namespace Spooked
             services.AddScoped<IOmdbAPIService, OmdbAPIService>();
 
             services.AddTransient<MovieRepository>();
+            services.AddTransient<SubGenreRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -1,37 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
-  FormGroup, Input, Label
+  Form, FormGroup, Input, Label
 } from 'reactstrap';
+import getAllSubGenres from '../../helpers/data/subGenreData';
 
-function SubGenreSelect() {
+function SubGenreSelect({ select, setSelect }) {
   const [subGenres, setSubGenres] = useState([]);
 
   useEffect(() => {
+    getAllSubGenres().then(setSubGenres);
   }, []);
 
   return (
     <div className="selectContainer">
-        <FormGroup row >
+      <Form>
+        <FormGroup >
           <Label for="subGenreSelect">
           </Label>
           <Input
             id="subGenreSelect"
             name="select"
             type="select"
+            placeholder=""
+            value={select}
+            onChange={(e) => setSelect(e.target.value)}
           >
-            {subGenres.map((subGenre) => (
-              <option key={subGenre.id}>
-                {subGenre.name}
-                {console.warn(setSubGenres)}
-              </option>
-            ))}
+            <option defaultValue disabled>
+            Select a SubGenre
+            </option>
+            {
+              subGenres.map((subGenre) => (
+                <option key={subGenre.id}>
+                  {subGenre.name}
+                </option>
+              ))
+            }
         </Input>
     </FormGroup>
+    </Form>
     </div>
   );
 }
 
-// SubGenreSelect.propTypes = {
-
-// };
+SubGenreSelect.propTypes = {
+  select: PropTypes.string,
+  setSelect: PropTypes.func
+};
 export default SubGenreSelect;
