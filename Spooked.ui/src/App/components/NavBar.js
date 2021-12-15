@@ -8,6 +8,7 @@ import {
   NavbarToggler,
   NavItem,
 } from 'reactstrap';
+import SubGenreSelect from './SubGenreSelect';
 // import PropTypes from 'prop-types'
 
 function NavBar() {
@@ -41,6 +42,7 @@ function NavBar() {
               <i className="fas fa-mask"></i> Watch List
               </Link>
             </NavItem>
+            <SubGenreSelect/>
           </Nav>
         </Collapse>
       </Navbar>
