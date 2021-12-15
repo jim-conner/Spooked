@@ -50,5 +50,18 @@ namespace Spooked.DataAccess
                 return singleMovie;
             }
         }
+
+        internal object GetBySubGenreId(int subGenreId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+                var movieSql = @"Select *
+                                From Movie
+                                Where SubGenreId = @subGenreId";
+                
+                var singleMovie = db.QuerySingleOrDefault<Movie>(movieSql, new { subGenreId = subGenreId });
+                return singleMovie;
+
+        }
     }
 }

@@ -23,5 +23,6 @@ namespace Spooked.DataAccess
 
             return movies;
         }
+
     }
 }

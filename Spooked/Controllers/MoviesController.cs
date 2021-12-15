@@ -50,6 +50,17 @@ namespace Spooked.Controllers
             return Ok(singleMovie);
         }
 
+        [HttpGet("subGenre/{subGenreId}")]
+        public IActionResult GetMovieBySubGenreId(int subGenreId)
+        {
+            var singleMovie = _repo.GetBySubGenreId(subGenreId);
 
+            if (singleMovie == null)
+            {
+                return NotFound($"Movie doesn't exist in localDB, or no SubGenreId matching: {subGenreId}.");
+            }
+            return Ok(singleMovie);
+
+        }
     }
 }

@@ -27,7 +27,7 @@ function SubGenreSelect({ select, setSelect }) {
             onChange={(e) => setSelect(e.target.value)}
           >
             <option defaultValue disabled>
-            Select a SubGenre
+            Filter by SubGenre
             </option>
             {
               subGenres.map((subGenre) => (
