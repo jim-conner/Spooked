@@ -7,6 +7,8 @@ namespace Spooked.Models
 {
     public class OmdbAPIMap
     {
+        // Note: not using this model yet
+        // currently doing JS Promise.all() on FE
         public string Title { get; set; }
         public string ImdbId { get; set; }
         public string Year { get; set; }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle,
+  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge,
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 // import { getSingleMovie } from '../../helpers/data/movieData';
@@ -40,8 +40,7 @@ function MovieDetailModal({ movieObj }) {
           <CardImg
             alt="Movie Detail"
             src={fullMovieObj.Poster}
-            top
-            width="100%"
+            // style={{ width: '100%', height: '50%' }}
           />
           <CardBody>
             <CardTitle tag="h5">
@@ -56,7 +55,12 @@ function MovieDetailModal({ movieObj }) {
             <CardText>
             <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
              {fullMovieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
-             SubGenre: {fullMovieObj.subGenreId}
+                <Badge
+                  color="primary"
+                  pill
+                >
+                  SubGenre: {fullMovieObj.subGenreId}
+                </Badge>
               {/* <small className="text-muted">
                 Last updated 3 mins ago
               </small> */}
@@ -65,6 +69,28 @@ function MovieDetailModal({ movieObj }) {
               {fullMovieObj.Plot}
             </CardText>
           </CardBody>
+          <CardFooter>
+          <div>
+            <Badge
+              color="warning"
+              pill
+            >
+              Trigger1
+            </Badge>
+            <Badge
+              color="danger"
+              pill
+            >
+              Trigger2
+            </Badge>
+            <Badge
+              color="success"
+              pill
+            >
+              Example3
+            </Badge>
+          </div>
+          </CardFooter>
         </ModalBody>
       </Modal>
     </CardImgOverlay>
