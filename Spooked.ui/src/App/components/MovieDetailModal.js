@@ -55,15 +55,15 @@ function MovieDetailModal({ movieObj }) {
             <CardText>
             <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
              {fullMovieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
-                <Badge
+                {/* <Badge
                   color="primary"
                   pill
                 >
                   SubGenre: {fullMovieObj.subGenreId}
-                </Badge>
-              {/* <small className="text-muted">
-                Last updated 3 mins ago
-              </small> */}
+                </Badge> */}
+              <small className="text-muted">
+                Subgenre should go here
+              </small>
             </CardText>
             <CardText>
               {fullMovieObj.Plot}
