@@ -22,16 +22,23 @@ function SubGenreSelect({ select, setSelect }) {
               id="subGenreSelect"
               name="select"
               type="select"
-              placeholder=""
+              placeholder="Filter by SubGenre"
               value={select}
               onChange={(e) => setSelect(e.target.value)}
             >
-              <option defaultValue disabled>
-              Filter by SubGenre
-              </option>
+              {
+                select === 0
+                  ? <option value={0} defaultValue disabled>
+                    Filter by SubGenre
+                    </option>
+                  : ''
+              }
               {
                 subGenres.map((subGenre) => (
-                  <option key={subGenre.id}>
+                  <option
+                    key={subGenre.id}
+                    value={subGenre.id}
+                  >
                     {subGenre.name}
                   </option>
                 ))
@@ -44,8 +51,7 @@ function SubGenreSelect({ select, setSelect }) {
 }
 
 SubGenreSelect.propTypes = {
-  movies: PropTypes.array,
-  select: PropTypes.string,
-  setSelect: PropTypes.func
+  select: PropTypes.number.isRequired,
+  setSelect: PropTypes.func.isRequired
 };
 export default SubGenreSelect;
