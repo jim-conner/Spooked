@@ -12,6 +12,10 @@ function SubGenreSelect({ select, setSelect }) {
     getAllSubGenres().then(setSubGenres);
   }, []);
 
+  const handleOnChange = (e) => {
+    setSelect(parseInt(e.target.value, 10));
+  };
+
   return (
     <div className="selectContainer">
       <Form>
@@ -24,14 +28,12 @@ function SubGenreSelect({ select, setSelect }) {
               type="select"
               placeholder="Filter by SubGenre"
               value={select}
-              onChange={(e) => setSelect(e.target.value)}
+              onChange={(e) => handleOnChange(e)}
             >
               {
-                select === 0
-                  ? <option value={0} defaultValue disabled>
+                  <option value={0} defaultValue>
                     Filter by SubGenre
-                    </option>
-                  : ''
+                  </option>
               }
               {
                 subGenres.map((subGenre) => (

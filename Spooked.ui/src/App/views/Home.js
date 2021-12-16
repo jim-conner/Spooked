@@ -13,19 +13,21 @@ function Home() {
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
 
-  useEffect(() => {
-    if (select === 0) {
-      getAllMovies().then(setMovies);
-    } else if (select !== 0) {
-      debugger;
-      getMoviesBySubGenre(select).then(setMovies);
-    }
-  }, []);
+  // useEffect(() => {
+  //   getAllMovies().then(setMovies);
+  // }, []);
 
-  // const filteredMoviesBySubGenre = () => {
-  //   if (select.length === 0 || null) {
-  //   }
-  // };
+  useEffect(() => {
+    if (select !== 0) {
+      getMoviesBySubGenre(select).then(setMovies);
+    } else {
+      getAllMovies().then(setMovies);
+    }
+    // return () => {
+    //   cleanup
+    // }
+  }, [select]);
+
   const filteredMoviesByTitle = search.length === 0
     ? movies
     : movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
@@ -63,7 +65,6 @@ function Home() {
 Home.propTypes = {
   movies: PropTypes.array,
   movieObj: PropTypes.object,
-  search: PropTypes.number
 };
 
 export default Home;
