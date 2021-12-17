@@ -5,7 +5,6 @@ const dbUrl = localDbConfig.localDB;
 
 const getAllMovies = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/movies`)
-    // .then((resp) => resolve(console.warn(Object.values(resp.data))))
     .then((resp) => resolve(Object.values(resp.data)))
     .catch((error) => reject(error));
 });
@@ -19,8 +18,6 @@ const getSingleMovie = (id) => new Promise((resolve, reject) => {
 const getMoviesBySubGenre = (subGenreId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/movies/subGenre/${subGenreId}`)
     .then((resp) => resolve(Object.values(resp.data)))
-    // .then((resp) => resolve(console.warn((resp.data))))
-    // .then((resp) => resolve(console.warn(Object.values(resp.data)))
     .catch((error) => reject(error));
 });
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Form, FormGroup, Input, Label
+  FormGroup, Input
 } from 'reactstrap';
 import getAllSubGenres from '../../helpers/data/subGenreData';
 
@@ -17,11 +17,8 @@ function SubGenreSelect({ select, setSelect }) {
   };
 
   return (
-    <div className="selectContainer">
-      <Form>
+    <>
         <FormGroup>
-          <Label for="subGenreSelect">
-          </Label>
             <Input
               id="subGenreSelect"
               name="select"
@@ -47,8 +44,7 @@ function SubGenreSelect({ select, setSelect }) {
               }
             </Input>
         </FormGroup>
-      </Form>
-    </div>
+    </>
   );
 }
 

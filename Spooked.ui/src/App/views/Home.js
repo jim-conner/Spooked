@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, CardGroup } from 'reactstrap';
+import { Container, Form } from 'reactstrap';
 import MovieCard from '../components/MovieCard';
 import '../App.scss';
 import { getAllMovies, getMoviesBySubGenre } from '../../helpers/data/movieData';
@@ -35,19 +35,18 @@ function Home() {
   return (
     <Container>
       <div className='homeHeader'>
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-        />
-      </div>
-      <div className='homeHeader'>
-        <SubGenreSelect
-          select={select}
-          setSelect={setSelect}
-        />
+        <Form inline>
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+          />
+          <SubGenreSelect
+            select={select}
+            setSelect={setSelect}
+          />
+        </Form>
       </div>
       <div className='homeContainer'>
-        <CardGroup>
           {
             filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
@@ -56,7 +55,6 @@ function Home() {
               />
             ))
           }
-        </CardGroup>
       </div>
     </Container>
   );
