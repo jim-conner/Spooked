@@ -1,42 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, CardGroup } from 'reactstrap';
+import { Container, Form } from 'reactstrap';
 import MovieCard from '../components/MovieCard';
 import '../App.scss';
-import { getAllMovies } from '../../helpers/data/movieData';
+import { getAllMovies, getMoviesBySubGenre } from '../../helpers/data/movieData';
 import SearchBar from '../components/SearchBar';
+import SubGenreSelect from '../components/SubGenreSelect';
 
 function Home() {
   const [movies, setMovies] = useState([]);
+  // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
+  const [select, setSelect] = useState(0);
+
+  // useEffect(() => {
+  //   getAllMovies().then(setMovies);
+  // }, []);
 
   useEffect(() => {
-    getAllMovies().then(setMovies);
-  }, []);
+    if (select !== 0) {
+      getMoviesBySubGenre(select).then(setMovies);
+    } else {
+      getAllMovies().then(setMovies);
+    }
+    // return () => {
+    //   cleanup
+    // }
+  }, [select]);
 
-  const filteredMovies = search.length === 0
+  const filteredMoviesByTitle = search.length === 0
     ? movies
     : movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <Container>
       <div className='homeHeader'>
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-        />
+        <Form inline>
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+          />
+          <SubGenreSelect
+            select={select}
+            setSelect={setSelect}
+          />
+        </Form>
       </div>
       <div className='homeContainer'>
-        <CardGroup>
           {
-            filteredMovies?.map((movieObj) => (
+            filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
                 key={movieObj.id}
                 movieObj={movieObj}
               />
             ))
           }
-        </CardGroup>
       </div>
     </Container>
   );

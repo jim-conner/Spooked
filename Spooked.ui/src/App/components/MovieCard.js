@@ -8,20 +8,14 @@ import MovieDetailModal from './MovieDetailModal';
 function MovieCard({ movieObj }) {
   return (
     <div>
-  <Card>
-    {/* <Button
-      color='transparent'
-      onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
-    > */}
+  <Card color='dark'>
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
-      // onClick={(e) => handleClick(movieObj.Id, e)}
     />
-    {/* </Button> */}
-      <MovieDetailModal
-        movieObj={movieObj}
-      />
+    <MovieDetailModal
+      movieObj={movieObj}
+    />
   </Card>
 </div>
   );

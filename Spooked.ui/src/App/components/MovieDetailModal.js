@@ -4,10 +4,8 @@ import {
   Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge,
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
-// import { getSingleMovie } from '../../helpers/data/movieData';
 
 function MovieDetailModal({ movieObj }) {
-  // const [idToUpdate, setIdToUpdate] = useState('');
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
 
@@ -16,11 +14,8 @@ function MovieDetailModal({ movieObj }) {
   const handleClick = (movieId, imdbId, e) => {
     e.preventDefault();
     toggle();
-    // if (movieId != null) {
-    // setIdToUpdate(movieId);
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
-    // }
   };
 
   return (
@@ -29,18 +24,15 @@ function MovieDetailModal({ movieObj }) {
       onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
     >
       <Modal
+      className='cardModal'
       isOpen={modal}
       toggle={toggle}
       centered
       >
-        {/* <ModalHeader toggle={toggle} > */}
-          {/* {fullMovieObj.title} | {fullMovieObj.Year} */}
-        {/* </ModalHeader> */}
         <ModalBody>
           <CardImg
             alt="Movie Detail"
             src={fullMovieObj.Poster}
-            // style={{ width: '100%', height: '50%' }}
           />
           <CardBody>
             <CardTitle tag="h5">
@@ -61,9 +53,9 @@ function MovieDetailModal({ movieObj }) {
                 >
                   SubGenre: {fullMovieObj.subGenreId}
                 </Badge>
-              {/* <small className="text-muted">
-                Last updated 3 mins ago
-              </small> */}
+              <small className="text-muted">
+                Subgenre should go here
+              </small>
             </CardText>
             <CardText>
               {fullMovieObj.Plot}

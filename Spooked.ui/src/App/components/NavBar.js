@@ -48,8 +48,8 @@ function NavBar() {
   );
 }
 
-NavBar.propTypes = {
+// NavBar.propTypes = {
 
-};
+// };
 
 export default NavBar;
