@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using Dapper;
 using Microsoft.Extensions.Configuration;
+using Spooked.Models;
 
 namespace Spooked.DataAccess
 {
@@ -12,15 +16,29 @@ namespace Spooked.DataAccess
             _connectionString = config.GetConnectionString("Spooked");
         }
 
-        internal object GetAll()
+        internal IEnumerable<Trigger> GetAll()
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(_connectionString);
 
+            var allTriggers = db.Query<Trigger>(@"Select * From [Trigger]");
+
+            return allTriggers;
         }
 
-        internal object GetById(object id)
+        internal IEnumerable<Trigger> GetByMovieId(Guid movieId)
         {
-            throw new NotImplementedException();
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select * 
+                        From [Trigger] 
+                        Where MovieId = @movieId
+                        Order By [Name] Asc";
+                        
+
+            var movieTriggers = db.Query<Trigger>(sql, new { movieId = movieId });
+
+            return movieTriggers;
+
         }
     }
 

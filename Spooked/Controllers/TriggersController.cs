@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Spooked.DataAccess;
+using Spooked.Models;
 
 namespace Spooked.Controllers
 {
@@ -26,14 +27,14 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
-        [HttpGet("trigger/{id}")]
-        public IActionResult GetTriggersById(id)
+        [HttpGet("movieTriggers/{movieId}")]
+        public IActionResult GetTriggersByMovieId(Guid movieId)
         {
-            var singleTrigger = _repo.GetById(id);
+            var singleTrigger = _repo.GetByMovieId(movieId);
 
             if (singleTrigger == null)
             {
-                return NotFound($"No movie found with MovieId: {id}.");
+                return NotFound($"No triggers found with MovieId: {movieId}.");
             }
             return Ok(singleTrigger);
         }
