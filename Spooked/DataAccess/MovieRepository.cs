@@ -38,6 +38,20 @@ namespace Spooked.DataAccess
             }
         }
 
+        internal object getMoviesByTrigger(Guid triggerId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var moviesByTrigger = @"select distinct m.*
+                                    from Movie m
+                                    inner join [Trigger] t on m.Id = t.MovieId
+                                    Where t.Id != @triggerId";
+
+            var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId });
+
+            return filteredMovies;
+        }
+
         internal Movie GetByImdbId(string imdbId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -47,6 +61,7 @@ namespace Spooked.DataAccess
                                 Where ImdbId = @imdbId";
 
                 var singleMovie = db.QuerySingleOrDefault<Movie>(movieSql, new { imdbId = imdbId });
+
                 return singleMovie;
             }
         }

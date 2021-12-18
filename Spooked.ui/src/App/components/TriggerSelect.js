@@ -7,9 +7,11 @@ import getAllTriggers from '../../helpers/data/triggerData';
 
 function TriggerSelect({ selectTrigger, setSelectTrigger }) {
   const [triggers, setTriggers] = useState([]);
+
   useEffect(() => {
     getAllTriggers().then(setTriggers);
   }, []);
+
   const handleOnChange = (e) => {
     setSelectTrigger(e.target.value);
   };
@@ -19,12 +21,12 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
             <Input
               id="triggerSelect"
               name="triggerSelect"
-              type="select"
+              type="select" // needs to end up being multiSelect
               value={selectTrigger}
               onChange={(e) => handleOnChange(e)}
             >
               {
-                  <option value="" defaultValue>
+                  <option value="" defaultValue disabled>
                     Filter by Triggers
                   </option>
               }

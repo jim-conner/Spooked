@@ -27,7 +27,7 @@ function SubGenreSelect({ select, setSelect }) {
               onChange={(e) => handleOnChange(e)}
             >
               {
-                  <option value={0} defaultValue>
+                  <option value={0} defaultValue disabled>
                     Choose a SubGenre
                   </option>
               }
