@@ -6,12 +6,14 @@ import '../App.scss';
 import { getAllMovies, getMoviesBySubGenre } from '../../helpers/data/movieData';
 import SearchBar from '../components/SearchBar';
 import SubGenreSelect from '../components/SubGenreSelect';
+import TriggerSelect from '../components/TriggerSelect';
 
 function Home() {
   const [movies, setMovies] = useState([]);
   // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
+  const [selectTrigger, setSelectTrigger] = useState('');
 
   // useEffect(() => {
   //   getAllMovies().then(setMovies);
@@ -20,6 +22,8 @@ function Home() {
   useEffect(() => {
     if (select !== 0) {
       getMoviesBySubGenre(select).then(setMovies);
+    } else if (selectTrigger !== '') {
+      // getMoviesByTriggers().then(setMovies);
     } else {
       getAllMovies().then(setMovies);
     }
@@ -43,6 +47,10 @@ function Home() {
           <SubGenreSelect
             select={select}
             setSelect={setSelect}
+          />
+          <TriggerSelect
+            selectTrigger={selectTrigger}
+            setSelectTrigger={setSelectTrigger}
           />
         </Form>
       </div>
