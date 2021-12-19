@@ -42,10 +42,13 @@ namespace Spooked.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var moviesByTrigger = @"select distinct m.*
-                                    from Movie m
-                                    inner join [Trigger] t on m.Id = t.MovieId
-                                    Where t.Id != @triggerId";
+            var moviesByTrigger = @"Select *
+                                    From Movie m
+                                    Where NOT EXISTS (
+	                                    Select t.Id From Movie
+	                                    INNER JOIN [Trigger] t on m.Id = t.MovieId
+	                                    Where t.Id = @triggerId 
+                                    )";
 
             var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId });
 

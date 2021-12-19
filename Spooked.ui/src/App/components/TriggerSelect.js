@@ -27,7 +27,7 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
             >
               {
                   <option value="" defaultValue disabled>
-                    Filter by Triggers
+                    Hide Movie Triggers
                   </option>
               }
               {
