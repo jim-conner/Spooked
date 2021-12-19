@@ -21,6 +21,12 @@ const getMoviesBySubGenre = (subGenreId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getMoviesBySingleTrigger = (triggerId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/movies/trigger/${triggerId}`)
+    .then((resp) => resolve(Object.values(resp.data)))
+    .catch((error) => reject(error));
+});
+
 // OmdbAPI Movie
 const getOmdbByImdbId = (imdbId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/omdbmovies/${imdbId}`)
@@ -38,5 +44,5 @@ const returnLocalOmdb = (id, imdbId) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre
+  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre, getMoviesBySingleTrigger
 };

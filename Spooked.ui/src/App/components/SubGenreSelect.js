@@ -21,15 +21,14 @@ function SubGenreSelect({ select, setSelect }) {
         <FormGroup>
             <Input
               id="subGenreSelect"
-              name="select"
+              name="subGenreSelect"
               type="select"
-              placeholder="Filter by SubGenre"
               value={select}
               onChange={(e) => handleOnChange(e)}
             >
               {
-                  <option value={0} defaultValue>
-                    Filter by SubGenre
+                  <option value={0} defaultValue disabled>
+                    Choose a SubGenre
                   </option>
               }
               {

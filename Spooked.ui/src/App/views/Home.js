@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Form } from 'reactstrap';
+import { Button, Container, Form } from 'reactstrap';
 import MovieCard from '../components/MovieCard';
 import '../App.scss';
-import { getAllMovies, getMoviesBySubGenre } from '../../helpers/data/movieData';
+import { getAllMovies, getMoviesBySingleTrigger, getMoviesBySubGenre } from '../../helpers/data/movieData';
 import SearchBar from '../components/SearchBar';
 import SubGenreSelect from '../components/SubGenreSelect';
+import TriggerSelect from '../components/TriggerSelect';
 
 function Home() {
   const [movies, setMovies] = useState([]);
   // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
+  const [selectTrigger, setSelectTrigger] = useState('');
 
   // useEffect(() => {
   //   getAllMovies().then(setMovies);
   // }, []);
 
+  const handleResetAll = () => {
+    setSearch('');
+    setSelect(0);
+    setSelectTrigger('');
+  };
+
   useEffect(() => {
     if (select !== 0) {
       getMoviesBySubGenre(select).then(setMovies);
+    } else if (selectTrigger !== '') {
+      getMoviesBySingleTrigger(selectTrigger).then(setMovies);
     } else {
       getAllMovies().then(setMovies);
     }
     // return () => {
     //   cleanup
     // }
-  }, [select]);
+  }, [select, selectTrigger]);
 
   const filteredMoviesByTitle = search.length === 0
     ? movies
@@ -44,6 +54,16 @@ function Home() {
             select={select}
             setSelect={setSelect}
           />
+          <TriggerSelect
+            selectTrigger={selectTrigger}
+            setSelectTrigger={setSelectTrigger}
+          />
+          <Button
+            onClick={((handleResetAll))}
+            style={{ backgroundColor: 'orangered' }}
+          >
+            Reset All
+          </Button>
         </Form>
       </div>
       <div className='homeContainer'>
