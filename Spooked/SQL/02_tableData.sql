@@ -12,7 +12,6 @@ insert into Movie ([Id], [ImdbId], [Title], [SubGenreId], [Watched], [Poster])
 	)
 ;
 
-
 -- subgenre data (Id auto-increments)
 insert into SubGenre([Name])
 	values
@@ -41,3 +40,10 @@ insert into [Trigger]([Name], [MovieId])
 		('Please don''t watch this movie', 'FFE5CC53-2222-EC11-B0C7-645D8657053E'),
 		('Test w Evil Dead', 'FFE5CC53-3333-EC11-B0C7-645D8657053E')
 ;
+
+insert into [User]([Id])
+	values
+		('FFE5CC53-0000-EC11-B0C7-645D8657053E')
+;
+
+
