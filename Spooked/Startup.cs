@@ -42,6 +42,8 @@ namespace Spooked
             services.AddTransient<MovieRepository>();
             services.AddTransient<SubGenreRepository>();
             services.AddTransient<TriggerRepository>();
+            services.AddTransient<UserRepository>();
+            services.AddTransient<WatchListRepository>();
 
 
             services.AddControllers();

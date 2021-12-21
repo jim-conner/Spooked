@@ -22,3 +22,20 @@ Create Table dbo.[Trigger] (
 	Constraint FK_Trigger_Movie Foreign Key (MovieId)
 		References dbo.[Movie] (Id)
 );
+
+-- create User Table
+Create Table dbo.[User] (
+	Id uniqueidentifier NOT NULL primary key default(newid()),
+	
+);
+
+-- create WatchList Table
+Create Table dbo.[WatchList](
+	Id uniqueidentifier NOT NULL primary key default(newid()),
+	[UserId] uniqueidentifier NOT NULL,
+	[MovieId] uniqueidentifier NOT NULL,
+	Constraint FK_Watchlist_User Foreign Key (UserId)
+		References dbo.[User] (Id),
+	Constraint FK_WatchList_Movie Foreign Key (MovieId)
+		References dbo.[Movie] (Id)
+);
