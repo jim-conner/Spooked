@@ -36,7 +36,7 @@ namespace Spooked.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"select * from WatchList where Id = @id";
+            var sql = @"Select * From WatchList Where Id = @id";
 
             var movie = db.QuerySingleOrDefault<WatchList>(sql, new { id });
 

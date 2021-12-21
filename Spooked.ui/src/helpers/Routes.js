@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../App/views/Home';
+import WatchList from '../App/views/WatchList';
 // import PropTypes from 'prop-types';
 // import { Route, Switch } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ function Routes() {
       />
        <Route
         exact path='/watchlist'
-        component={() => <Home
+        component={() => <WatchList
         />}
       />
     </Switch>
