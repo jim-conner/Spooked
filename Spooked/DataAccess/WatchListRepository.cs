@@ -22,12 +22,19 @@ namespace Spooked.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"Select w.*
-                        From WatchList w
-                        Join [User] u on u.Id = w.UserId
-                        Join [Movie] m on m.Id = w.MovieId";
+            var watchListSql = @"Select w.*, m.*
+                                From WatchList w
+                                Join [User] u on u.Id = w.UserId
+                                Join [Movie] m on m.Id = w.MovieId";
 
-            var watchListMovies= db.Query<WatchList>(sql);
+            var watchListMovies = db.Query<WatchList, Movie, WatchList>(
+                watchListSql,
+                (watchList, movie) =>
+                {
+                    watchList.Movie = movie;
+                    return watchList;
+                },
+                splitOn: "Id");
 
             return watchListMovies;
         }

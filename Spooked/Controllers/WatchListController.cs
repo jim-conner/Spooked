@@ -14,10 +14,13 @@ namespace Spooked.Controllers
     public class WatchListController : ControllerBase
     {
         private WatchListRepository _repo;
+        private MovieRepository _movieRepo;
 
-        public WatchListController(WatchListRepository repo)
+        public WatchListController(WatchListRepository repo, MovieRepository movieRepo)
         {
             _repo = repo;
+            _movieRepo = movieRepo;
+
 
         }
         [HttpGet]
