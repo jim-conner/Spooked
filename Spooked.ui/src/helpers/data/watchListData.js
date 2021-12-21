@@ -5,7 +5,7 @@ const dbUrl = localDbConfig.localDB;
 
 const getWatchListMovies = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/watchlist`)
-    .then((resp) => resolve(console.warn(Object.values(resp.data))))
+    .then((resp) => resolve(Object.values(resp.data)))
     .catch((error) => reject(error));
 });
 

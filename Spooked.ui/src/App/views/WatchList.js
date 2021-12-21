@@ -3,41 +3,37 @@ import React, { useEffect, useState } from 'react';
 import { Container, Form } from 'reactstrap';
 import getWatchListMovies from '../../helpers/data/watchListData';
 import MovieCard from '../components/MovieCard';
+import SearchBar from '../components/SearchBar';
+// import SubGenreSelect from '../components/SubGenreSelect';
 
 function WatchList() {
   const [watchList, setWatchlist] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    getWatchListMovies().then(setWatchlist);
+    getWatchListMovies().then((resp) => {
+      const movies = resp.map((movie) => movie.movie);
+      setWatchlist(movies);
+    });
   }, []);
+
+  const filteredMoviesByTitle = search.length === 0
+    ? watchList
+    : watchList.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <Container>
       <div className='homeHeader'>
         <Form inline>
-          {/* <SearchBar
+          <SearchBar
             search={search}
             setSearch={setSearch}
           />
-          <SubGenreSelect
-            select={select}
-            setSelect={setSelect}
-          />
-          <TriggerSelect
-            selectTrigger={selectTrigger}
-            setSelectTrigger={setSelectTrigger}
-          />
-          <Button
-            onClick={((handleResetAll))}
-            style={{ backgroundColor: 'orangered' }}
-          >
-            Reset All
-          </Button> */}
         </Form>
       </div>
       <div className='homeContainer'>
           {
-            watchList?.map((movieObj) => (
+            filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
                 key={movieObj.id}
                 movieObj={movieObj}
@@ -49,8 +45,8 @@ function WatchList() {
   );
 }
 
-WatchList.propTypes = {
+// WatchList.propTypes = {
 
-};
+// };
 
 export default WatchList;
