@@ -28,16 +28,17 @@ function Routes({ user }) {
         />}
       />
 
-      <Route
-        exact path='/browse/'
+      {/* <Route
+        exact path='/browse'
         component={() => <Home
         />}
-      />
+      /> */}
        <PrivateRoute
         exact path='/watchlist'
         component={() => <WatchList
           user={user}
         />}
+        user={user}
       />
     </Switch>
     </>

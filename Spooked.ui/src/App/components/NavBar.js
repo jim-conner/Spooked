@@ -19,19 +19,20 @@ function NavBar({ user }) {
   const toggle = () => setIsOpen(!isOpen);
 
   const authButtons = () => (
-    <div>
+    <>
       {
         user !== null
         && <ButtonGroup>
           {
             user
               ? <Button outline color='danger' onClick={signOutUser}>Logout</Button>
-              : <Button outline color='success' onClick={signInUser}>Login</Button>
+              : <Button color='dark' style={{ color: 'orangered' }} onClick={signInUser}>Login</Button>
           }
         </ButtonGroup>
       }
-      </div>
+      </>
   );
+
   return (
     <div>
       <Navbar
@@ -40,28 +41,38 @@ function NavBar({ user }) {
         dark
       >
         <NavbarBrand
-          // href='/'
           className='me-auto'
         >
-          <i className="fas fa-ghost" style={{ color: 'orangered' }}/> SPOOKED!
+          <i className="fas fa-ghost" style={{ color: 'orangered' }}/>
+            {' '} SPOOKED
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav
-            className='nav-bar me-auto' navbar
+            className='nav-bar me-auto'
+            navbar
           >
             <NavItem>
-              <Link className='nav-link' to='/browse'>
+              <Link className='nav-link' to='/'>
                 {<i className="fas fa-spider"></i>} Browse
               </Link>
             </NavItem>
-            <NavItem>
-              <Link className='nav-link' to='/watchlist'>
-              <i className="fas fa-mask"></i> Watch List
-              </Link>
-            </NavItem>
-            {authButtons()}
+            {
+              user !== null
+                && <>
+                {
+                  user
+                    ? <NavItem>
+                        <Link className='nav-link' to='/watchlist'>
+                          <i className="fas fa-book-dead"></i> Watch List
+                        </Link>
+                      </NavItem>
+                    : ''
+                }
+                </>
+            }
           </Nav>
+            {authButtons()}
         </Collapse>
       </Navbar>
     </div>

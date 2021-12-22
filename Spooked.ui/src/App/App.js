@@ -9,18 +9,12 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((userInfo) => {
-      if (userInfo) {
-        // when still logged in but refresh page, user remains empty instead of changing state.
+    // eslint-disable-next-line no-shadow
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
         // eslint-disable-next-line no-undef
-        userInfo.getIdToken().then((token) => sessionStorage.setItem('token', token))
-          .then(() => console.warn(userInfo));
-        // .then(
-        //   getUserByFirebaseId(userInfo.uid)
-        //     .then((resp) => {
-        //       setUser(resp);
-        //     })
-        // );
+        user.getIdToken().then((token) => sessionStorage.setItem('token', token));
+        setUser(user);
       } else {
         setUser(false);
       }
