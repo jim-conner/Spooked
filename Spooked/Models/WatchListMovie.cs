@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Spooked.Models
 {
-    public class WatchList
+    public class WatchListMovie
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid MovieId { get; set; }
+
+        public Movie Movie { get; set; }
     }
 }

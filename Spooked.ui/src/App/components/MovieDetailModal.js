@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge,
+  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge, ButtonGroup, Button,
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 
@@ -83,6 +83,14 @@ function MovieDetailModal({ movieObj }) {
             </Badge>
           </div>
           </CardFooter>
+          <ButtonGroup>
+            <Button color='primary'>
+              +
+            </Button>
+            <Button color= 'warning'>
+              -
+            </Button>
+          </ButtonGroup>
         </ModalBody>
       </Modal>
     </CardImgOverlay>

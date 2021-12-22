@@ -18,7 +18,7 @@ namespace Spooked.DataAccess
             _connectionString = config.GetConnectionString("Spooked");
         }
 
-        internal IEnumerable<WatchList> GetAll()
+        internal IEnumerable<WatchListMovie> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -27,12 +27,12 @@ namespace Spooked.DataAccess
                                 Join [User] u on u.Id = w.UserId
                                 Join [Movie] m on m.Id = w.MovieId";
 
-            var watchListMovies = db.Query<WatchList, Movie, WatchList>(
+            var watchListMovies = db.Query<WatchListMovie, Movie, WatchListMovie>(
                 watchListSql,
-                (watchList, movie) =>
+                (watchListMovie, movie) =>
                 {
-                    watchList.Movie = movie;
-                    return watchList;
+                    watchListMovie.Movie = movie;
+                    return watchListMovie;
                 },
                 splitOn: "Id");
 
@@ -50,30 +50,47 @@ namespace Spooked.DataAccess
             return movie;
         }
 
-        public void Add(WatchList newWatchListMovie)
-        {
-            using var db = new SqlConnection(_connectionString);
-
-            var sql = @"Insert into [WatchList](UserId, MovieId)
-                        Output inserted.Id
-                        Values(@UserId, @MovieId)";
-
-            var id = db.ExecuteScalar<Guid>(sql, newWatchListMovie);
-            newWatchListMovie.Id = id;
-        }
-
         internal object GetWatchListByUserIdMovieId(Guid userId, Guid movieId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"select * from WatchList 
                         where UserId = @userId
-                        and MovieId = @MovieId";
+                        and MovieId = @movieId";
 
             var snackMood = db.QuerySingleOrDefault<WatchList>(sql, new { userId, movieId });
 
             return snackMood;
         }
+
+        public void Add(WatchList newWatchListMovie)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var userSql = @"Select * from [User] 
+                        where UserId = @userId
+                        and MovieId = @movieId";
+
+            var sql = @"Insert into [WatchList]( MovieId)
+                        Output inserted.Id
+                        Values(u.Id, @MovieId) 
+                        Select u.Id as UserId From [User] u 
+                        ";
+
+            //var sql = @"Insert into [WatchList]( MovieId)
+            //            Output inserted.Id
+            //            Values(u.Id, @MovieId) 
+            //            Select u.Id as UserId From [User] u 
+            //            INNER JOIN [WatchList] w on w.UserId = u.Id
+            //            ";
+
+            var id = db.ExecuteScalar<Guid>(sql, newWatchListMovie);
+            newWatchListMovie.Id = id;
+        }
+
+
+
+
     }
 }
  
