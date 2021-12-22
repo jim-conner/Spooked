@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import { signInUser, signOutUser } from '../../helpers/auth';
 
-function NavBar() {
+function NavBar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -40,7 +40,8 @@ function NavBar() {
         dark
       >
         <NavbarBrand
-          href='/' className='me-auto'
+          // href='/'
+          className='me-auto'
         >
           <i className="fas fa-ghost" style={{ color: 'orangered' }}/> SPOOKED!
         </NavbarBrand>
@@ -68,7 +69,7 @@ function NavBar() {
 }
 
 NavBar.propTypes = {
-
+  user: PropTypes.any
 };
 
 export default NavBar;
