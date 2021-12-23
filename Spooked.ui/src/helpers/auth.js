@@ -1,19 +1,27 @@
 import firebase from 'firebase/';
 import { createNewUser } from './data/userData';
 
-const signInUser = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then((user) => {
-    if (user.additionalUserInfo?.isNewUser) {
+const provider = new firebase.auth.GoogleAuthProvider();
+
+const firstSignIn = () => {
+  firebase.auth().signInWithPopup(provider).then((firebaseUser) => {
+    if (firebaseUser.additionalUserInfo?.isNewUser) {
       const userInfo = {
-        firebaseId: user.user?.uid
+        firebaseId: firebaseUser.user?.uid
       };
       createNewUser(userInfo);
-      // add to control flow here ?
+    } else {
+      // firebase.auth().signInWithPopup(provider);
     }
   });
 };
+
+const signInUser = () => {
+  firebase.auth().signInWithPopup(provider);
+};
+
 const signOutUser = () => new Promise((resolve, reject) => {
   firebase.auth().signOut().then(resolve).catch(reject);
 });
-export { signInUser, signOutUser };
+
+export { firstSignIn, signInUser, signOutUser };

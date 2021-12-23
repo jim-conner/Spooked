@@ -9,13 +9,14 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // eslint-disable-next-line no-shadow
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
         // eslint-disable-next-line no-undef
-        user.getIdToken().then((token) => sessionStorage.setItem('token', token));
-        setUser(user);
+        firebaseUser.getIdToken().then((token) => sessionStorage.setItem('token', token));
+        setUser(firebaseUser);
+        console.warn('if fbuser', firebaseUser.uid);
       } else {
+        console.warn('else fbuser');
         setUser(false);
       }
     });
