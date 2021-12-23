@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import {
   Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge, ButtonGroup, Button,
 } from 'reactstrap';
-import { getSingleMovie, returnLocalOmdb } from '../../helpers/data/movieData';
-import { AddMovieToWatchList } from '../../helpers/data/watchListData';
+import { returnLocalOmdb } from '../../helpers/data/movieData';
+// import { getUserByFirebaseId } from '../../helpers/data/userData';
+// import { AddMovieToWatchList } from '../../helpers/data/watchListData';
 
-function MovieDetailModal({ movieObj, user }) {
+function MovieDetailModal({ user, movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
 
@@ -19,10 +20,12 @@ function MovieDetailModal({ movieObj, user }) {
       .then((resp) => setFullMovieObj(resp));
   };
 
-  const handleWatchList = (userId, movieId) => {
-    getSingleMovie(movieId).then(() => {
-      AddMovieToWatchList(user.Id, movieId).then((resp) => console.warn(resp));
-    });
+  const handleWatchList = (movieId, e) => {
+    e.preventDefault();
+    console.warn(user);
+    // getSingleMovie(movieId).then(() => {
+    //   AddMovieToWatchList(user.Id, movieId).then((resp) => console.warn(resp));
+    // });
   };
 
   return (
@@ -92,7 +95,8 @@ function MovieDetailModal({ movieObj, user }) {
           </CardFooter>
           <ButtonGroup>
             <Button
-            onClick={handleWatchList(movieObj.id)}
+            onClick={(e) => (handleWatchList(e))}
+            // onClick={console.warn(movieObj.id)}
             color='primary'>
               +
             </Button>

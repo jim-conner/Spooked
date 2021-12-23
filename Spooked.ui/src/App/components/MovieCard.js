@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import MovieDetailModal from './MovieDetailModal';
 
-function MovieCard({ movieObj }) {
+function MovieCard({ user, movieObj }) {
   return (
     <div>
   <Card color='dark' className='movieCard'>
@@ -22,6 +22,7 @@ function MovieCard({ movieObj }) {
       src={movieObj.poster}
     />
     <MovieDetailModal
+      user={user}
       movieObj={movieObj}
     />
   </Card>
@@ -30,7 +31,8 @@ function MovieCard({ movieObj }) {
 }
 
 MovieCard.propTypes = {
-  movieObj: PropTypes.object
+  movieObj: PropTypes.object,
+  user: PropTypes.any
 };
 
 export default MovieCard;

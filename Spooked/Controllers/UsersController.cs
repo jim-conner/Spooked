@@ -26,6 +26,8 @@ namespace Spooked.Controllers
         public IActionResult GetAllUsers()
         {
             return Ok(_repo.GetAll());
+            var fbIdFromClaim = FirebaseUid;
+
         }
 
         [HttpGet("id/{id}")]
@@ -44,8 +46,7 @@ namespace Spooked.Controllers
         [HttpGet("fbid/{firebaseId}")]
         public IActionResult GetUserByFirebaseId(string firebaseId)
         {
-            var fbIdFromClaim = FirebaseUid;
-            var user = _repo.GetByFirebaseId(fbIdFromClaim);
+            var user = _repo.GetByFirebaseId(firebaseId);
 
             if (user == null)
             {

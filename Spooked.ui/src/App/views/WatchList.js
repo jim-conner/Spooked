@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import { Container, Form } from 'reactstrap';
-import getWatchListMovies from '../../helpers/data/watchListData';
+import { getWatchListMovies } from '../../helpers/data/watchListData';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 // import SubGenreSelect from '../components/SubGenreSelect';
