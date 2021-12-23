@@ -25,17 +25,45 @@ namespace Spooked.DataAccess
             return allTriggers;
         }
 
-        internal User GetById(Guid Id)
+        internal User GetById(Guid id)
         {
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"Select *
                         From [User]
-                        Where Id = @Id";
+                        Where Id = @id";
 
-            var singleUser = db.QueryFirstOrDefault<User>(sql, new { Id = Id });
+            var singleUser = db.QueryFirstOrDefault<User>(sql, new { Id = id });
 
             return singleUser;
+        }
+
+        internal User GetByFirebaseId(string firebaseId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select *
+                        From [User]
+                        Where FirebaseId = @firebaseId";
+
+            var user = db.QuerySingleOrDefault<User>(sql, new { firebaseId });
+
+            return user;
+        }
+
+    internal void Add(User newUser)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var userSql = @"Insert into [User] 
+                                (FirebaseId)
+                             Output inserted.Id
+                            Values 
+                                (@FirebaseId)";
+
+            var userId = db.ExecuteScalar<Guid>(userSql, newUser);
+
+            newUser.Id = userId;
         }
 
     }
