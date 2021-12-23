@@ -26,7 +26,7 @@ Create Table dbo.[Trigger] (
 -- create User Table
 Create Table dbo.[User] (
 	Id uniqueidentifier NOT NULL primary key default(newid()),
-	
+	FirebaseId varchar(50) NOT NULL,
 );
 
 -- create WatchList Table

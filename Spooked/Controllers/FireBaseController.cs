@@ -11,11 +11,12 @@ namespace Spooked.Controllers
     [ApiController]
     public class FireBaseController : ControllerBase
     {
-        public string GetFirebaseUid()
-        {
-            return User.FindFirst(claim => claim.Type == "user_id").Value;
-        }
+        //public string GetFirebaseUid()
+        //{
+        //    return User.FindFirst(claim => claim.Type == "user_id").Value;
+        //}
 
+        //using readonly property below instead of method
         public string FirebaseUid => User.FindFirst(claim => claim.Type == "user_id").Value;
     }
 }

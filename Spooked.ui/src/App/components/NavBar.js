@@ -25,8 +25,15 @@ function NavBar({ user }) {
         && <ButtonGroup>
           {
             user
-              ? <Button outline color='danger' onClick={signOutUser}>Logout</Button>
-              : <Button color='dark' style={{ color: 'orangered' }} onClick={signInUser}>Login</Button>
+              ? <Button outline color='danger'
+                  onClick={signOutUser}>
+                    Logout
+                  </Button>
+              : <Button color='dark' style={{ color: 'orangered' }}
+                  onClick={signInUser}>{''}
+                    {user !== null && {}
+                      ? 'Create an Account' : 'Login'}
+                  </Button>
           }
         </ButtonGroup>
       }
