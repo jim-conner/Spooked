@@ -9,6 +9,7 @@ const signInUser = () => {
         firebaseId: user.user?.uid
       };
       createNewUser(userInfo);
+      // add to control flow here ?
     }
   });
 };
