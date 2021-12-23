@@ -8,7 +8,7 @@ import SearchBar from '../components/SearchBar';
 import SubGenreSelect from '../components/SubGenreSelect';
 import TriggerSelect from '../components/TriggerSelect';
 
-function Home() {
+function Home({ user }) {
   const [movies, setMovies] = useState([]);
   // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
@@ -70,6 +70,7 @@ function Home() {
           {
             filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
+                user={user}
                 key={movieObj.id}
                 movieObj={movieObj}
               />
@@ -81,8 +82,9 @@ function Home() {
 }
 
 Home.propTypes = {
-  movies: PropTypes.array,
-  movieObj: PropTypes.object,
+  user: PropTypes.any
+  // movies: PropTypes.array,
+  // movieObj: PropTypes.object,
 };
 
 export default Home;

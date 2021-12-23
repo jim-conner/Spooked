@@ -23,6 +23,7 @@ function Routes({ user }) {
       <Route
         exact path='/'
         component={() => <Home
+          user={user}
         />}
       />
 

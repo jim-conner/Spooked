@@ -9,4 +9,10 @@ const getWatchListMovies = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default getWatchListMovies;
+const AddMovieToWatchList = (watchItem) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/watchlist`, watchItem)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
+export { AddMovieToWatchList, getWatchListMovies };

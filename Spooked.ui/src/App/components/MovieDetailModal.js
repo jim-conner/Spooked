@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {
   Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge, ButtonGroup, Button,
 } from 'reactstrap';
-import { returnLocalOmdb } from '../../helpers/data/movieData';
+import { getSingleMovie, returnLocalOmdb } from '../../helpers/data/movieData';
+import { AddMovieToWatchList } from '../../helpers/data/watchListData';
 
-function MovieDetailModal({ movieObj }) {
+function MovieDetailModal({ movieObj, user }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
 
@@ -16,6 +17,12 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
+  };
+
+  const handleWatchList = (userId, movieId) => {
+    getSingleMovie(movieId).then(() => {
+      AddMovieToWatchList(user.Id, movieId).then((resp) => console.warn(resp));
+    });
   };
 
   return (
@@ -84,7 +91,9 @@ function MovieDetailModal({ movieObj }) {
           </div>
           </CardFooter>
           <ButtonGroup>
-            <Button color='primary'>
+            <Button
+            onClick={handleWatchList(movieObj.id)}
+            color='primary'>
               +
             </Button>
             <Button color= 'warning'>
@@ -98,7 +107,8 @@ function MovieDetailModal({ movieObj }) {
 }
 
 MovieDetailModal.propTypes = {
-  movieObj: PropTypes.object
+  movieObj: PropTypes.object,
+  user: PropTypes.any
 };
 
 export default MovieDetailModal;

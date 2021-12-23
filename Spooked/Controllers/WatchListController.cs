@@ -14,13 +14,11 @@ namespace Spooked.Controllers
     public class WatchListController : ControllerBase
     {
         private WatchListRepository _repo;
-        private MovieRepository _movieRepo;
 
-        public WatchListController(WatchListRepository repo, MovieRepository movieRepo)
+        public WatchListController(
+            WatchListRepository repo)
         {
             _repo = repo;
-            _movieRepo = movieRepo;
-
 
         }
         [HttpGet]
@@ -47,11 +45,15 @@ namespace Spooked.Controllers
         {
             var doesMovieExistAlready = _repo.GetWatchListByUserIdMovieId(newWatchListMovie.UserId, newWatchListMovie.MovieId);
 
+            if (doesMovieExistAlready != null)
+                return BadRequest("Movie already added to watchlist.");
+
             if (newWatchListMovie.UserId == Guid.Empty 
                 || newWatchListMovie.MovieId == Guid.Empty)
             {
                 return BadRequest("UserId & MovieId are required.");
             }
+
 
             _repo.Add(newWatchListMovie);
 

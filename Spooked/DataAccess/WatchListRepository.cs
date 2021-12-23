@@ -54,35 +54,22 @@ namespace Spooked.DataAccess
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"select * from WatchList 
-                        where UserId = @userId
+            var sql = @"Select * from WatchList 
+                        Where UserId = @userId
                         and MovieId = @movieId";
 
-            var snackMood = db.QuerySingleOrDefault<WatchList>(sql, new { userId, movieId });
+            var watchListMovie = db.QuerySingleOrDefault<WatchList>(sql, new { userId, movieId });
 
-            return snackMood;
+            return watchListMovie;
         }
 
         public void Add(WatchList newWatchListMovie)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var userSql = @"Select * from [User] 
-                        where UserId = @userId
-                        and MovieId = @movieId";
-
-            var sql = @"Insert into [WatchList]( MovieId)
+            var sql = @"Insert into [WatchList]( UserId, MovieId)
                         Output inserted.Id
-                        Values(u.Id, @MovieId) 
-                        Select u.Id as UserId From [User] u 
-                        ";
-
-            //var sql = @"Insert into [WatchList]( MovieId)
-            //            Output inserted.Id
-            //            Values(u.Id, @MovieId) 
-            //            Select u.Id as UserId From [User] u 
-            //            INNER JOIN [WatchList] w on w.UserId = u.Id
-            //            ";
+                        Values(@UserId, @MovieId)";
 
             var id = db.ExecuteScalar<Guid>(sql, newWatchListMovie);
             newWatchListMovie.Id = id;
