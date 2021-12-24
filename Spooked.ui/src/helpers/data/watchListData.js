@@ -9,9 +9,9 @@ const getWatchListMovies = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const AddMovieToWatchList = (watchItem) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/watchlist`, watchItem)
-    .then((response) => resolve(response.data))
+const AddMovieToWatchList = (watchListmovie) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/watchlist`, watchListmovie)
+    .then(() => getWatchListMovies(resolve))
     .catch((error) => reject(error));
 });
 

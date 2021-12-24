@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import Routes from '../helpers/Routes';
 import NavBar from './components/NavBar';
 import './App.scss';
-// import { getUserByFirebaseId } from '../helpers/data/userData';
+import { getUserByFirebaseId } from '../helpers/data/userData';
 
 function App() {
   const [user, setUser] = useState({});
@@ -14,11 +14,9 @@ function App() {
       if (firebaseUser) {
         // eslint-disable-next-line no-undef
         firebaseUser.getIdToken().then((token) => sessionStorage.setItem('token', token));
-        // getUserByFirebaseId(firebaseUser.uid)
-        // .then((resp) => console.warn(resp.data));
-        // .then((resp) => setUser(resp));
-        // console.warn('if fbuser', firebaseUser.uid);
-        setUser(firebaseUser);
+        // getUserByFirebaseId(firebaseUser.uid).then((resp) => console.warn(resp))
+        getUserByFirebaseId(firebaseUser.uid).then((resp) => setUser(resp));
+        // setUser(firebaseUser);
       } else {
         console.warn('else fbuser');
         setUser(false);

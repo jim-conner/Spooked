@@ -5,11 +5,15 @@ import {
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 // import { getUserByFirebaseId } from '../../helpers/data/userData';
-// import { AddMovieToWatchList } from '../../helpers/data/watchListData';
+import { AddMovieToWatchList } from '../../helpers/data/watchListData';
 
 function MovieDetailModal({ user, movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
+  const [watchListObj, setWatchListObj] = useState({
+    userId: user.id,
+    movieId: movieObj.id
+  });
 
   const toggle = () => setModal(!modal);
 
@@ -20,12 +24,9 @@ function MovieDetailModal({ user, movieObj }) {
       .then((resp) => setFullMovieObj(resp));
   };
 
-  const handleWatchList = (movieId, e) => {
+  const handleWatchList = (e) => {
     e.preventDefault();
-    console.warn(user);
-    // getSingleMovie(movieId).then(() => {
-    //   AddMovieToWatchList(user.Id, movieId).then((resp) => console.warn(resp));
-    // });
+    AddMovieToWatchList(watchListObj).then(setWatchListObj);
   };
 
   return (

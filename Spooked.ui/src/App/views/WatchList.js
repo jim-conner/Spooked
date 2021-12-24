@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Container, Form } from 'reactstrap';
 import { getWatchListMovies } from '../../helpers/data/watchListData';
 import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 // import SubGenreSelect from '../components/SubGenreSelect';
 
-function WatchList() {
+function WatchList({ user }) {
   const [watchList, setWatchlist] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -35,6 +35,7 @@ function WatchList() {
           {
             filteredMoviesByTitle?.map((movieObj) => (
               <MovieCard
+                user={user}
                 key={movieObj.id}
                 movieObj={movieObj}
               />
@@ -45,8 +46,8 @@ function WatchList() {
   );
 }
 
-// WatchList.propTypes = {
-
-// };
+WatchList.propTypes = {
+  user: PropTypes.any
+};
 
 export default WatchList;
