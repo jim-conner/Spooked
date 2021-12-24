@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 // import { getUserByFirebaseId } from '../../helpers/data/userData';
-import { AddMovieToWatchList } from '../../helpers/data/watchListData';
+import { addMovieToWatchList, getWatchListMovieById, removeMovieFromWatchList } from '../../helpers/data/watchListData';
 
 function MovieDetailModal({ user, movieObj }) {
   const [modal, setModal] = useState(false);
@@ -24,9 +24,18 @@ function MovieDetailModal({ user, movieObj }) {
       .then((resp) => setFullMovieObj(resp));
   };
 
-  const handleWatchList = (e) => {
+  const handleWatchListAdd = (e) => {
     e.preventDefault();
-    AddMovieToWatchList(watchListObj).then(setWatchListObj);
+    addMovieToWatchList(watchListObj)
+      .then(getWatchListMovieById).then(setWatchListObj);
+  };
+
+  const handleWatchListRemove = (e) => {
+    e.preventDefault();
+    debugger;
+    removeMovieFromWatchList(watchListObj.id)
+      // .then(setWatchListObj);
+      .then((resp) => console.warn(resp));
   };
 
   return (
@@ -96,12 +105,14 @@ function MovieDetailModal({ user, movieObj }) {
           </CardFooter>
           <ButtonGroup>
             <Button
-            onClick={(e) => (handleWatchList(e))}
+            onClick={(e) => (handleWatchListAdd(e))}
             // onClick={console.warn(movieObj.id)}
             color='primary'>
               +
             </Button>
-            <Button color= 'warning'>
+            <Button
+            onClick={(e) => (handleWatchListRemove(e))}
+            color= 'warning'>
               -
             </Button>
           </ButtonGroup>

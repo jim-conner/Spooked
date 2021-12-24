@@ -75,6 +75,16 @@ namespace Spooked.DataAccess
             newWatchListMovie.Id = id;
         }
 
+        public void Remove(Guid id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Delete From WatchList 
+                        Where Id = @id";
+
+            db.Execute(sql, new { id });
+        }
+
 
 
 

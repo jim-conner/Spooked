@@ -59,5 +59,13 @@ namespace Spooked.Controllers
 
             return Created($"/api/snackMood/{newWatchListMovie.Id}", newWatchListMovie);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult RemoveMovieFromWatchList (Guid id)
+        {
+            _repo.Remove(id);
+
+            return Ok();
+        }
     }
 }
