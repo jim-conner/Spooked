@@ -4,7 +4,6 @@ import {
   Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge, ButtonGroup, Button,
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
-// import { getUserByFirebaseId } from '../../helpers/data/userData';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
 
 function MovieDetailModal({ user, movieObj }) {
@@ -16,11 +15,6 @@ function MovieDetailModal({ user, movieObj }) {
   });
 
   const toggle = () => setModal(!modal);
-
-  // useEffect(() => {
-  //   getWatchListMovieByMovieId(watchListObj.movieId);
-  //   console.warn(watchListObj);
-  // }, []);
 
   const handleClick = (movieId, imdbId, e) => {
     e.preventDefault();
