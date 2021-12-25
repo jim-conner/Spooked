@@ -26,7 +26,7 @@ function MovieCard({
 
   const handleWatchListRemove = (e) => {
     e.preventDefault();
-    removeMovieFromWatchList(watchListObj.id)
+    removeMovieFromWatchList(movieObj.id)
       .then((watchListArray) => setWatchlist(watchListArray));
   };
 
