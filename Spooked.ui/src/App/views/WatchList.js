@@ -39,6 +39,7 @@ function WatchList({ user }) {
                 user={user}
                 key={movieObj.id}
                 movieObj={movieObj}
+                setWatchlist={setWatchlist}
                 // watchListMovie={watchListMovie}
                 // setWatchListMovie={setWatchListMovie}
               />
