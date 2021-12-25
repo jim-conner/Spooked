@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
+  Badge,
   Button,
   ButtonGroup,
-  Card, CardFooter, CardImg
+  Card, CardBody, CardFooter, CardImg, CardText,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -44,6 +45,43 @@ function WatchListCard({
       alt="Movie Poster"
       src={movieObj.movie.poster}
     />
+    <CardBody>
+            <CardText>
+            <i className="fab fa-imdb fa-2x"></i> {movieObj.movie.imdbRating}{' | '}
+             {movieObj.movie.watched === false ? 'unwatched' : 'watched'}{' | '}
+                <Badge
+                  color="primary"
+                  pill
+                >
+                  SubGenre: {movieObj.movie.subGenreId}
+                </Badge>
+              <small className="text-muted">
+                Subgenre should go here
+              </small>
+            </CardText>
+          </CardBody>
+          <CardFooter>
+            <div>
+              <Badge
+                color="warning"
+                pill
+              >
+                Trigger1
+              </Badge>
+              <Badge
+                color="danger"
+                pill
+              >
+                Trigger2
+              </Badge>
+              <Badge
+                color="success"
+                pill
+              >
+                Example3
+              </Badge>
+            </div>
+          </CardFooter>
     <CardFooter>
     <ButtonGroup>
             <Button
