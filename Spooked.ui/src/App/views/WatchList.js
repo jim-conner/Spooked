@@ -8,13 +8,15 @@ import SearchBar from '../components/SearchBar';
 
 function WatchList({ user }) {
   const [watchList, setWatchlist] = useState([]);
-  // const [watchListMovie, setWatchListMovie] = useState({});
+  const [watchListMovieObj, setWatchListMovieObj] = useState({});
   const [search, setSearch] = useState('');
 
   useEffect(() => {
     getWatchListMovies().then((resp) => {
+      // setWatchListMovieArray(resp);
       const movies = resp.map((movie) => movie);
       setWatchlist(movies);
+      console.warn(setWatchListMovieObj);
     });
   }, []);
 
@@ -39,7 +41,11 @@ function WatchList({ user }) {
                 user={user}
                 key={movieObj.id}
                 movieObj={movieObj}
+                watchListMovieObj={watchListMovieObj}
+                // watchListMovie={watchListMovie}
+                // watchListMovieArray={watchListMovieArray}
                 setWatchlist={setWatchlist}
+                // setWatchListMovie={setWatchListMovie}
                 // watchListMovie={watchListMovie}
                 // setWatchListMovie={setWatchListMovie}
               />

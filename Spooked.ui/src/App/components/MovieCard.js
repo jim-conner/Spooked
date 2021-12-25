@@ -8,16 +8,20 @@ import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
 import MovieDetailModal from './MovieDetailModal';
 
-function MovieCard({ user, movieObj, setWatchlist }) {
+function MovieCard({
+  user, movieObj, watchListMovieObj, setWatchlist
+}) {
   const [watchListObj, setWatchListObj] = useState({
-    id: movieObj.id,
+    id: watchListMovieObj?.id,
     userId: user?.id,
     movieId: movieObj?.id
   });
 
   const handleWatchListAdd = (e) => {
     e.preventDefault();
-    addMovieToWatchList(watchListObj).then(() => setWatchListObj(watchListObj));
+    addMovieToWatchList(watchListObj)
+      .then((resp) => console.warn(resp, 'console warn wtachlistobj', setWatchListObj));
+    // .then(() => setWatchListObj(watchListObj));
   };
 
   const handleWatchListRemove = (e) => {
@@ -67,8 +71,8 @@ function MovieCard({ user, movieObj, setWatchlist }) {
 MovieCard.propTypes = {
   user: PropTypes.any,
   movieObj: PropTypes.object,
-  setWatchlist: PropTypes.func
-  // watchListMovie: PropTypes.object,
+  watchListMovieObj: PropTypes.object,
+  setWatchlist: PropTypes.func,
 };
 
 export default MovieCard;
