@@ -32,10 +32,9 @@ function MovieDetailModal({ user, movieObj }) {
 
   const handleWatchListRemove = (e) => {
     e.preventDefault();
-    debugger;
-    removeMovieFromWatchList(watchListObj.id)
-      // .then(setWatchListObj);
-      .then((resp) => console.warn(resp));
+    removeMovieFromWatchList(watchListObj.id).then(setWatchListObj);
+    // .then((resp) => console.warn(resp));
+    console.warn(watchListObj);
   };
 
   return (

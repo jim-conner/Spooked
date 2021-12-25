@@ -22,8 +22,8 @@ const addMovieToWatchList = (watchListmovie) => new Promise((resolve, reject) =>
 });
 
 const removeMovieFromWatchList = (id) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/watchlist/${id}`)
-    .then(() => getWatchListMovies(resolve))
+  axios.delete(`${dbUrl}/watchlist/${id}`)
+    .then(() => getWatchListMovies().then((resp) => resolve(resp)))
     .catch((error) => reject(error));
 });
 
