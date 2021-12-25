@@ -16,9 +16,8 @@ const getWatchListMovieByMovieId = (id) => new Promise((resolve, reject) => {
 });
 
 const addMovieToWatchList = (watchListmovie) => new Promise((resolve, reject) => {
-  debugger;
   axios.post(`${dbUrl}/watchlist`, watchListmovie)
-    .then(() => getWatchListMovieByMovieId(watchListmovie.movieId).then(getWatchListMovies(resolve)))
+    .then(() => getWatchListMovies(resolve))
     .catch((error) => reject(error));
 });
 

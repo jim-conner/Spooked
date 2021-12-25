@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge, ButtonGroup, Button,
+  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
-import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
 
-function MovieDetailModal({ user, movieObj }) {
+function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
-  const [watchListObj, setWatchListObj] = useState({
-    userId: user.id,
-    movieId: movieObj.id
-  });
 
   const toggle = () => setModal(!modal);
 
@@ -21,21 +16,6 @@ function MovieDetailModal({ user, movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
-  };
-
-  const handleWatchListAdd = (e) => {
-    e.preventDefault();
-    toggle();
-    addMovieToWatchList(watchListObj);
-    // .then(getWatchListMovieByMovieId(watchListObj.movieId)).then(setWatchListObj);
-  };
-
-  const handleWatchListRemove = (e) => {
-    e.preventDefault();
-    toggle();
-    removeMovieFromWatchList(watchListObj.id).then(setWatchListObj);
-    // .then((resp) => console.warn(resp));
-    console.warn(watchListObj);
   };
 
   return (
@@ -52,11 +32,11 @@ function MovieDetailModal({ user, movieObj }) {
         <ModalBody>
           <CardImg
             alt="Movie Detail"
-            src={fullMovieObj.Poster}
+            src={fullMovieObj.poster}
           />
           <CardBody>
             <CardTitle tag="h5">
-            {fullMovieObj.title}
+            {movieObj.title}
             </CardTitle>
             <CardSubtitle
               className="mb-2 text-muted"
@@ -66,7 +46,7 @@ function MovieDetailModal({ user, movieObj }) {
             </CardSubtitle>
             <CardText>
             <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
-             {fullMovieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
+             {movieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
                 <Badge
                   color="primary"
                   pill
@@ -103,18 +83,6 @@ function MovieDetailModal({ user, movieObj }) {
             </Badge>
           </div>
           </CardFooter>
-          <ButtonGroup>
-            <Button
-            onClick={(e) => (handleWatchListAdd(e))}
-            color='primary'>
-              +
-            </Button>
-            <Button
-            onClick={(e) => (handleWatchListRemove(e))}
-            color= 'warning'>
-              -
-            </Button>
-          </ButtonGroup>
         </ModalBody>
       </Modal>
     </CardImgOverlay>
