@@ -9,7 +9,7 @@ using Spooked.Models;
 
 namespace Spooked.Controllers
 {
-    [Route("api/watchList/")]
+    [Route("api/watchlist/")]
     [ApiController]
     public class WatchListController : ControllerBase
     {
@@ -40,6 +40,19 @@ namespace Spooked.Controllers
             return Ok(watchListMovie);
         }
 
+        [HttpGet("movie/{id}")]
+        public IActionResult GetWatchListMovieByMovieId(Guid id)
+        {
+            WatchList watchListMovie = _repo.GetByMovieId(id);
+
+            if (watchListMovie == null)
+            {
+                return NotFound("No watchList movie exists with MovieId: {id}");
+
+            }
+            return Ok(watchListMovie);
+        }
+
         [HttpPost]
         public IActionResult AddMovieToWatchList(WatchList newWatchListMovie)
         {
@@ -57,7 +70,7 @@ namespace Spooked.Controllers
 
             _repo.Add(newWatchListMovie);
 
-            return Created($"/api/snackMood/{newWatchListMovie.Id}", newWatchListMovie);
+            return Created($"/api/watchlist/{newWatchListMovie.Id}", newWatchListMovie);
         }
 
         [HttpDelete("{id}")]

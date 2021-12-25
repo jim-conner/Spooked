@@ -50,6 +50,17 @@ namespace Spooked.DataAccess
             return movie;
         }
 
+        internal WatchList GetByMovieId(Guid id)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select * From WatchList Where MovieId = @id";
+
+            var movie = db.QuerySingleOrDefault<WatchList>(sql, new { id });
+
+            return movie;
+        }
+
         internal object GetWatchListByUserIdMovieId(Guid userId, Guid movieId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -73,6 +84,7 @@ namespace Spooked.DataAccess
 
             var id = db.ExecuteScalar<Guid>(sql, newWatchListMovie);
             newWatchListMovie.Id = id;
+
         }
 
         public void Remove(Guid id)

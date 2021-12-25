@@ -9,15 +9,16 @@ const getWatchListMovies = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getWatchListMovieById = (id) => new Promise((resolve, reject) => {
-  axios.post(`${dbUrl}/watchlist/${id}`)
+const getWatchListMovieByMovieId = (id) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/watchlist/movie/${id}`)
     .then((resp) => resolve(resp))
     .catch((error) => reject(error));
 });
 
 const addMovieToWatchList = (watchListmovie) => new Promise((resolve, reject) => {
+  debugger;
   axios.post(`${dbUrl}/watchlist`, watchListmovie)
-    .then(() => getWatchListMovies(resolve))
+    .then(() => getWatchListMovieByMovieId(watchListmovie.movieId).then(getWatchListMovies(resolve)))
     .catch((error) => reject(error));
 });
 
@@ -28,5 +29,5 @@ const removeMovieFromWatchList = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getWatchListMovies, getWatchListMovieById, addMovieToWatchList, removeMovieFromWatchList
+  getWatchListMovies, getWatchListMovieByMovieId, addMovieToWatchList, removeMovieFromWatchList
 };

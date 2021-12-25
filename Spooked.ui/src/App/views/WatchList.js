@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 
 function WatchList({ user }) {
   const [watchList, setWatchlist] = useState([]);
+  const [watchListMovie, setWatchListMovie] = useState({});
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -38,6 +39,8 @@ function WatchList({ user }) {
                 user={user}
                 key={movieObj.id}
                 movieObj={movieObj}
+                watchListMovie={watchListMovie}
+                setWatchListMovie={setWatchListMovie}
               />
             ))
           }
