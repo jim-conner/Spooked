@@ -20,8 +20,7 @@ function MovieCard({
   const handleWatchListAdd = (e) => {
     e.preventDefault();
     addMovieToWatchList(watchListObj)
-      .then((resp) => console.warn(resp, 'console warn wtachlistobj', setWatchListObj));
-    // .then(() => setWatchListObj(watchListObj));
+      .then(() => setWatchListObj(watchListObj));
   };
 
   const handleWatchListRemove = (e) => {

@@ -3,7 +3,7 @@ import {
   Badge,
   Button,
   ButtonGroup,
-  Card, CardBody, CardFooter, CardImg, CardText,
+  Card, CardBody, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -20,8 +20,7 @@ function WatchListCard({
   const handleWatchListAdd = (e) => {
     e.preventDefault();
     addMovieToWatchList(watchListObj)
-      .then((resp) => console.warn(resp, 'console warn wtachlistobj', setWatchListObj));
-    // .then(() => setWatchListObj(watchListObj));
+      .then(() => setWatchListObj(watchListObj));
   };
 
   const handleWatchListRemove = (e) => {
@@ -46,21 +45,6 @@ function WatchListCard({
       src={movieObj.movie.poster}
     />
     <CardBody>
-            <CardText>
-            <i className="fab fa-imdb fa-2x"></i> {movieObj.movie.imdbRating}{' | '}
-             {movieObj.movie.watched === false ? 'unwatched' : 'watched'}{' | '}
-                <Badge
-                  color="primary"
-                  pill
-                >
-                  SubGenre: {movieObj.movie.subGenreId}
-                </Badge>
-              <small className="text-muted">
-                Subgenre should go here
-              </small>
-            </CardText>
-          </CardBody>
-          <CardFooter>
             <div>
               <Badge
                 color="warning"
@@ -81,21 +65,19 @@ function WatchListCard({
                 Example3
               </Badge>
             </div>
-          </CardFooter>
-    <CardFooter>
-    <ButtonGroup>
-            <Button
-            onClick={(e) => (handleWatchListAdd(e))}
-            color='primary'>
-              +
-            </Button>
-            <Button
-            onClick={(e) => (handleWatchListRemove(e))}
-            color= 'warning'>
-              -
-            </Button>
-          </ButtonGroup>
-    </CardFooter>
+      <ButtonGroup>
+        <Button
+        onClick={(e) => (handleWatchListAdd(e))}
+        color='primary'>
+          +
+        </Button>
+        <Button
+        onClick={(e) => (handleWatchListRemove(e))}
+        color= 'warning'>
+          -
+        </Button>
+      </ButtonGroup>
+    </CardBody>
   </Card>
 </div>
   );
@@ -104,7 +86,6 @@ function WatchListCard({
 WatchListCard.propTypes = {
   user: PropTypes.any,
   movieObj: PropTypes.object,
-  watchListMovieObj: PropTypes.object,
   setWatchlist: PropTypes.func,
 };
 

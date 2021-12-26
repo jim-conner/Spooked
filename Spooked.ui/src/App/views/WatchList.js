@@ -16,7 +16,6 @@ function WatchList({ user }) {
       // setWatchListMovieArray(resp);
       const movies = resp.map((movie) => movie);
       setWatchlist(movies);
-      console.warn(setWatchListMovieObj);
     });
   }, []);
 
@@ -42,12 +41,8 @@ function WatchList({ user }) {
                 key={movieObj.id}
                 movieObj={movieObj}
                 watchListMovieObj={watchListMovieObj}
-                // watchListMovie={watchListMovie}
-                // watchListMovieArray={watchListMovieArray}
+                setWatchListMovieObj={setWatchListMovieObj}
                 setWatchlist={setWatchlist}
-                // setWatchListMovie={setWatchListMovie}
-                // watchListMovie={watchListMovie}
-                // setWatchListMovie={setWatchListMovie}
               />
             ))
           }

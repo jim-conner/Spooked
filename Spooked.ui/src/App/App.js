@@ -14,11 +14,9 @@ function App() {
       if (firebaseUser) {
         // eslint-disable-next-line no-undef
         firebaseUser.getIdToken().then((token) => sessionStorage.setItem('token', token));
-        // getUserByFirebaseId(firebaseUser.uid).then((resp) => console.warn(resp))
         getUserByFirebaseId(firebaseUser.uid).then((resp) => setUser(resp));
         // setUser(firebaseUser);
       } else {
-        console.warn('else fbuser');
         setUser(false);
       }
     });
