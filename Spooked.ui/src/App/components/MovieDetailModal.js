@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge,
+  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 
@@ -32,11 +32,11 @@ function MovieDetailModal({ movieObj }) {
         <ModalBody>
           <CardImg
             alt="Movie Detail"
-            src={fullMovieObj.Poster}
+            src={fullMovieObj.poster}
           />
           <CardBody>
             <CardTitle tag="h5">
-            {fullMovieObj.title}
+            {movieObj.title}
             </CardTitle>
             <CardSubtitle
               className="mb-2 text-muted"
@@ -46,7 +46,7 @@ function MovieDetailModal({ movieObj }) {
             </CardSubtitle>
             <CardText>
             <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
-             {fullMovieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
+             {movieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
                 <Badge
                   color="primary"
                   pill
@@ -90,7 +90,8 @@ function MovieDetailModal({ movieObj }) {
 }
 
 MovieDetailModal.propTypes = {
-  movieObj: PropTypes.object
+  movieObj: PropTypes.object,
+  user: PropTypes.any
 };
 
 export default MovieDetailModal;

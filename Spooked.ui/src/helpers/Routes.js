@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../App/views/Home';
 import WatchList from '../App/views/WatchList';
-// import PropTypes from 'prop-types';
-// import { Route, Switch } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
   const routeChecker = (remainder) => (user
@@ -25,6 +23,7 @@ function Routes({ user }) {
       <Route
         exact path='/'
         component={() => <Home
+          user={user}
         />}
       />
 

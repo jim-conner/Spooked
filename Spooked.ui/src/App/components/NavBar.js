@@ -11,7 +11,7 @@ import {
   ButtonGroup,
   Button,
 } from 'reactstrap';
-import { signInUser, signOutUser } from '../../helpers/auth';
+import { firstSignIn, signOutUser } from '../../helpers/auth';
 
 function NavBar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,23 +20,18 @@ function NavBar({ user }) {
 
   const authButtons = () => (
     <>
-      {
-        user !== null
-        && <ButtonGroup>
           {
             user
-              ? <Button outline color='danger'
+              ? <Button color='dark' style={{ color: 'orangered' }}
                   onClick={signOutUser}>
                     Logout
                   </Button>
               : <Button color='dark' style={{ color: 'orangered' }}
-                  onClick={signInUser}>{''}
-                    {user !== null && {}
-                      ? 'Create an Account' : 'Login'}
-                  </Button>
+                  onClick={firstSignIn}>
+                    {/* {newUser === true ? 'Create Account' : 'Login'} */}
+                    Login
+                </Button>
           }
-        </ButtonGroup>
-      }
       </>
   );
 
@@ -79,7 +74,12 @@ function NavBar({ user }) {
                 </>
             }
           </Nav>
-            {authButtons()}
+              {
+              user !== null
+                && <ButtonGroup>
+                  {authButtons()}
+                </ButtonGroup>
+              }
         </Collapse>
       </Navbar>
     </div>
@@ -87,7 +87,8 @@ function NavBar({ user }) {
 }
 
 NavBar.propTypes = {
-  user: PropTypes.any
+  user: PropTypes.any,
+  // newUser: PropTypes.bool
 };
 
 export default NavBar;

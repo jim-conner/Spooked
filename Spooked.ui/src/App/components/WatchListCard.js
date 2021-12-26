@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import {
+  Badge,
   Button,
   ButtonGroup,
-  Card, CardFooter, CardImg
+  Card, CardBody, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
-import MovieDetailModal from './MovieDetailModal';
 
-function MovieCard({
-  user, movieObj, watchListMovieObj, setWatchlist
+function WatchListCard({
+  user, movieObj, setWatchlist
 }) {
   const [watchListObj, setWatchListObj] = useState({
-    id: watchListMovieObj?.id,
+    id: movieObj?.id,
     userId: user?.id,
     movieId: movieObj?.id
   });
@@ -42,36 +42,51 @@ function MovieCard({
 
     <CardImg
       alt="Movie Poster"
-      src={movieObj.poster}
+      src={movieObj.movie.poster}
     />
-    <MovieDetailModal
-      user={user}
-      movieObj={movieObj}
-    />
-    <CardFooter>
-    <ButtonGroup>
-            <Button
-            onClick={(e) => (handleWatchListAdd(e))}
-            color='primary'>
-              +
-            </Button>
-            <Button
-            onClick={(e) => (handleWatchListRemove(e))}
-            color= 'warning'>
-              -
-            </Button>
-          </ButtonGroup>
-    </CardFooter>
+    <CardBody>
+            <div>
+              <Badge
+                color="warning"
+                pill
+              >
+                Trigger1
+              </Badge>
+              <Badge
+                color="danger"
+                pill
+              >
+                Trigger2
+              </Badge>
+              <Badge
+                color="success"
+                pill
+              >
+                Example3
+              </Badge>
+            </div>
+      <ButtonGroup>
+        <Button
+        onClick={(e) => (handleWatchListAdd(e))}
+        color='primary'>
+          +
+        </Button>
+        <Button
+        onClick={(e) => (handleWatchListRemove(e))}
+        color= 'warning'>
+          -
+        </Button>
+      </ButtonGroup>
+    </CardBody>
   </Card>
 </div>
   );
 }
 
-MovieCard.propTypes = {
+WatchListCard.propTypes = {
   user: PropTypes.any,
   movieObj: PropTypes.object,
-  watchListMovieObj: PropTypes.object,
   setWatchlist: PropTypes.func,
 };
 
-export default MovieCard;
+export default WatchListCard;

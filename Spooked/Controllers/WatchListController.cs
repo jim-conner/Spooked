@@ -9,18 +9,16 @@ using Spooked.Models;
 
 namespace Spooked.Controllers
 {
-    [Route("api/watchList/")]
+    [Route("api/watchlist/")]
     [ApiController]
     public class WatchListController : ControllerBase
     {
         private WatchListRepository _repo;
-        private MovieRepository _movieRepo;
 
-        public WatchListController(WatchListRepository repo, MovieRepository movieRepo)
+        public WatchListController(
+            WatchListRepository repo)
         {
             _repo = repo;
-            _movieRepo = movieRepo;
-
 
         }
         [HttpGet]
@@ -42,10 +40,26 @@ namespace Spooked.Controllers
             return Ok(watchListMovie);
         }
 
+        [HttpGet("movie/{id}")]
+        public IActionResult GetWatchListMovieByMovieId(Guid id)
+        {
+            WatchList watchListMovie = _repo.GetByMovieId(id);
+
+            if (watchListMovie == null)
+            {
+                return NotFound("No watchList movie exists with MovieId: {id}");
+
+            }
+            return Ok(watchListMovie);
+        }
+
         [HttpPost]
         public IActionResult AddMovieToWatchList(WatchList newWatchListMovie)
         {
             var doesMovieExistAlready = _repo.GetWatchListByUserIdMovieId(newWatchListMovie.UserId, newWatchListMovie.MovieId);
+
+            if (doesMovieExistAlready != null)
+                return BadRequest("Movie already added to watchlist.");
 
             if (newWatchListMovie.UserId == Guid.Empty 
                 || newWatchListMovie.MovieId == Guid.Empty)
@@ -53,9 +67,18 @@ namespace Spooked.Controllers
                 return BadRequest("UserId & MovieId are required.");
             }
 
+
             _repo.Add(newWatchListMovie);
 
-            return Created($"/api/snackMood/{newWatchListMovie.Id}", newWatchListMovie);
+            return Created($"/api/watchlist/{newWatchListMovie.Id}", newWatchListMovie);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult RemoveMovieFromWatchList (Guid id)
+        {
+            _repo.Remove(id);
+
+            return Ok();
         }
     }
 }

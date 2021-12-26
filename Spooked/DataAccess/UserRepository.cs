@@ -46,7 +46,7 @@ namespace Spooked.DataAccess
                         From [User]
                         Where FirebaseId = @firebaseId";
 
-            var user = db.QuerySingleOrDefault<User>(sql, new { firebaseId });
+            var user = db.QueryFirstOrDefault<User>(sql, new { firebaseId });
 
             return user;
         }
