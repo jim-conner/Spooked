@@ -7,6 +7,7 @@ import {
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
 import MovieDetailModal from './MovieDetailModal';
+// import blood from '../assets/Blood-Falling-PNG-File.png';
 
 function MovieCard({
   user, movieObj, watchListMovieObj, setWatchlist
@@ -48,10 +49,13 @@ function MovieCard({
       user={user}
       movieObj={movieObj}
     />
-    <Progress
-      color="danger"
-      value={50}
-    />
+    <div>
+      <Progress
+        color="danger"
+        value={50}
+      />
+        {/* <img className={{}} alt="Blood Bar"src={blood}/> */}
+    </div>
     <CardFooter>
     <ButtonGroup>
             <Button

@@ -17,7 +17,7 @@
 
 .homeContainer {
   display: flex;
-  flex-direction: row nowrap;
+  flex-direction: row wrap;
   justify-content: space-around;
   align-items: stretch;
 }
@@ -31,9 +31,10 @@
   top:0;
   right:0;
 }
-// .MovieCard {
-  
-// }
+.movieCard {
+  height: 25vh;
+  width: 25vh;
+}
 
 .homeHeader .form-group {
   margin-right: 5px;
