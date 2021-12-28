@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Button,
   ButtonGroup,
-  Card, CardFooter, CardImg
+  Card, CardFooter, CardImg, Progress
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -32,13 +32,13 @@ function MovieCard({
   return (
     <div>
   <Card color='dark' className='movieCard'>
-    {/* {
-      movieObj.watched === true
+    {
+      movieObj.watched === false
         ? <div className='favBtn'>
-            <i className='fas fa-heart fa-2x' style={{ color: 'orangered' }}></i>
+            <i className='fas fa-check fa-2x' style={{ color: 'orangered' }}></i>
           </div>
         : ''
-    } */}
+    }
 
     <CardImg
       alt="Movie Poster"
@@ -47,6 +47,10 @@ function MovieCard({
     <MovieDetailModal
       user={user}
       movieObj={movieObj}
+    />
+    <Progress
+      color="danger"
+      value={50}
     />
     <CardFooter>
     <ButtonGroup>
