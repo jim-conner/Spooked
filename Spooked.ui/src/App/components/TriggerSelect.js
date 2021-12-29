@@ -21,13 +21,13 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
             <Input
               id="triggerSelect"
               name="triggerSelect"
-              type="select" // needs to end up being multiSelect
+              type="select"
               value={selectTrigger}
               onChange={(e) => handleOnChange(e)}
             >
               {
-                  <option value="" defaultValue disabled>
-                    Hide Movie Triggers
+                  <option value="" defaultValue>
+                    Hide movies by trigger
                   </option>
               }
               {

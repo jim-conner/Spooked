@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  Button,
   FormGroup,
   // Form,
   Input,
   InputGroup,
+  // InputGroupText,
   // InputGroupText,
 } from 'reactstrap';
 
@@ -13,9 +15,9 @@ function SearchBar({ search, setSearch }) {
       <>
         <FormGroup>
           <InputGroup>
-            {/* <InputGroupText>
+            <Button disabled outline style={{ color: 'orangered' }}>
               {<i className="fas fa-search"></i>}
-            </InputGroupText> */}
+            </Button>
             <Input
               type="search"
               placeholder="Search by movie title..."
