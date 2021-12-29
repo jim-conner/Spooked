@@ -87,6 +87,26 @@ namespace Spooked.DataAccess
             }
         }
 
+        internal object ToggleWatched(Guid id, Movie movieToUpdate)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Update Movie
+                        Set 
+	                        ImdbId = @imdbId, 
+	                        Title = @title, 
+	                        SubGenreId = @subGenreId, 
+	                        Watched = @watched,
+	                        Poster = @poster
+                        Output inserted.*
+                        Where id = @id";
+
+            movieToUpdate.Id = id;
+            var updatedMovieToUpdate = db.QuerySingleOrDefault<Movie>(sql, movieToUpdate);
+
+            return updatedMovieToUpdate;
+        }
+
         internal object GetBySubGenreId(int subGenreId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -96,6 +116,8 @@ namespace Spooked.DataAccess
                                 Where SubGenreId = @subGenreId";
                 
                 var filteredMovies = db.Query<Movie>(movieSql, new { subGenreId = subGenreId });
+
+
 
                 return filteredMovies;
 

@@ -79,9 +79,22 @@ namespace Spooked.Controllers
                 return NotFound($"Didn't find any movies with SubGenreId: {subGenreId}.");
             }
             return Ok(moviesBySubGenre);
-
         }
 
+        [HttpPut("movieId/watched/{id}")]
+        public IActionResult updateWatchedBool(Guid id)
+        {
+            var movieToUpdate = _repo.GetById(id);
+
+            if (movieToUpdate == null)
+                return NotFound($"Could not find a movie with ID: {id} to update.");
+
+            movieToUpdate.Watched = !movieToUpdate.Watched;
+
+            var updatedMovie = _repo.ToggleWatched(id, movieToUpdate);
+
+            return Ok(updatedMovie);
+        }
         
     }
 }

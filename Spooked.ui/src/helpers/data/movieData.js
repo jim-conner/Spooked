@@ -49,6 +49,14 @@ const returnLocalOmdb = (id, imdbId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// toggle T/F movied watched status
+const updateWatchedStatus = (id) => new Promise((resolve, reject) => {
+  axios.put(`${dbUrl}/movies/movieId/watched/${id}`)
+    .then(() => getSingleMovie(id)).then(resolve)
+    .catch((error) => reject(error));
+  debugger;
+});
+
 export {
-  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre, getMoviesBySingleTrigger, getMoviesByTriggerAndSubGenre
+  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre, getMoviesBySingleTrigger, getMoviesByTriggerAndSubGenre, updateWatchedStatus
 };

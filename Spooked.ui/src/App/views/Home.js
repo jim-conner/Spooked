@@ -66,7 +66,8 @@ function Home({ user }) {
           />
           <Button
             onClick={((handleResetAll))}
-            style={{ backgroundColor: 'orangered' }}
+            style={{ color: 'orangered' }}
+            outline
           >
             Reset All
           </Button>
@@ -76,14 +77,15 @@ function Home({ user }) {
         <div className='homeHeader'>
           {movies.length === 0
             ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
-              {<div style={{ position: 'absolute' }}></div>}
-              {<div style={{ position: 'absolute' }}><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, something must have spooked the movies....</h5></div>}
+              {<div></div>}
+              {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, something must have spooked the movies....</h5></div>}
             </div>
             : filteredMoviesByTitle?.map((movieObj) => (
                 <MovieCard
                   user={user}
                   key={movieObj.id}
                   movieObj={movieObj}
+                  setMovies={setMovies}
                 />
             ))
           }

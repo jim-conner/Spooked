@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   ButtonGroup,
   Card, CardFooter, CardImg
+  // Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
-import MovieDetailModal from './MovieDetailModal';
+import { getSingleMovie, updateWatchedStatus } from '../../helpers/data/movieData';
+// import MovieDetailModal from './MovieDetailModal';
 
 function MovieCard({
   user, movieObj, watchListMovieObj, setWatchlist
 }) {
+  // const [tooltipOpen, setTooltipOpen] = useState(false);
   const [watchListObj, setWatchListObj] = useState({
     id: watchListMovieObj?.id,
     userId: user?.id,
     movieId: movieObj?.id
   });
+
+  useEffect(() => {
+    debugger;
+    getSingleMovie(movieObj.id);
+  }, [movieObj.watched]);
+
+  const handleWatchedBool = (e) => {
+    e.preventDefault();
+    updateWatchedStatus(movieObj.watched);
+  };
 
   const handleWatchListAdd = (e) => {
     e.preventDefault();
@@ -32,22 +45,32 @@ function MovieCard({
   return (
     <div>
   <Card color='dark' className='movieCard'>
-    {/* {
-      movieObj.watched === true
-        ? <div className='favBtn'>
-            <i className='fas fa-heart fa-2x' style={{ color: 'orangered' }}></i>
-          </div>
-        : ''
-    } */}
+    {
+      <Button className='favBtn' id='watchedToolTip' onClick={(e) => { handleWatchedBool(e); }}>
+            {
+              movieObj.watched === true
+                ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
+                : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
+              }
+            {/* <Tooltip
+              isOpen={tooltipOpen}
+              flip
+              target="watchedToolTip"
+              toggle={() => { setTooltipOpen(!tooltipOpen); }}
+            >
+              Hello world!
+            </Tooltip> */}
+          </Button>
+    }
 
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
     />
-    <MovieDetailModal
+    {/* <MovieDetailModal
       user={user}
       movieObj={movieObj}
-    />
+    /> */}
     <CardFooter>
     <ButtonGroup>
             <Button
@@ -72,6 +95,7 @@ MovieCard.propTypes = {
   movieObj: PropTypes.object,
   watchListMovieObj: PropTypes.object,
   setWatchlist: PropTypes.func,
+  setMovies: PropTypes.func
 };
 
 export default MovieCard;
