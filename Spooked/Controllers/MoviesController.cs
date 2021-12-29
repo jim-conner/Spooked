@@ -26,6 +26,12 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("filteredMovies")]
+        public IActionResult getFilteredMovies(Guid triggerId, int subGenreId)
+        {
+            return Ok(_repo.getMoviesByTriggerAndSubGenre(triggerId, subGenreId));
+        }
+
         [HttpGet("trigger/{triggerId}")]
         public IActionResult FilterMoviesByTriggers(Guid triggerId)
         {

@@ -5,7 +5,7 @@ import {
   // Form,
   Input,
   InputGroup,
-  InputGroupText,
+  // InputGroupText,
 } from 'reactstrap';
 
 function SearchBar({ search, setSearch }) {
@@ -13,9 +13,9 @@ function SearchBar({ search, setSearch }) {
       <>
         <FormGroup>
           <InputGroup>
-            <InputGroupText style={{ backgroundColor: 'orangered' }}>
+            {/* <InputGroupText>
               {<i className="fas fa-search"></i>}
-            </InputGroupText>
+            </InputGroupText> */}
             <Input
               type="search"
               placeholder="Search by movie title..."

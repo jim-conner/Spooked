@@ -25,6 +25,24 @@ namespace Spooked.DataAccess
             return movies;
         }
 
+        internal object getMoviesByTriggerAndSubGenre(Guid triggerId, int subGenreId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var moviesByTrigger = @"Select *
+                                    From Movie m
+                                    Where NOT EXISTS (
+	                                    Select t.Id From Movie
+	                                    INNER JOIN [Trigger] t on m.Id = t.MovieId
+	                                    Where t.Id = @triggerId 
+                                    )
+                                    AND m.SubGenreId = @subgenreId";
+
+            var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId, subgenreId = subGenreId });
+
+            return filteredMovies;
+        }
+
         internal Movie GetById(Guid Id)
         {
             using var db = new SqlConnection(_connectionString);

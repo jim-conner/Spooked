@@ -26,9 +26,9 @@ function Home({ user }) {
   };
 
   useEffect(() => {
-    if (select !== 0) {
+    if (select) {
       getMoviesBySubGenre(select).then(setMovies);
-    } else if (selectTrigger !== '') {
+    } else if (selectTrigger) {
       getMoviesBySingleTrigger(selectTrigger).then(setMovies);
     } else {
       getAllMovies().then(setMovies);
