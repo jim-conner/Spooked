@@ -54,7 +54,6 @@ const updateWatchedStatus = (id) => new Promise((resolve, reject) => {
   axios.put(`${dbUrl}/movies/movieId/watched/${id}`)
     .then(() => getSingleMovie(id)).then(resolve)
     .catch((error) => reject(error));
-  debugger;
 });
 
 export {
