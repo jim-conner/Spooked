@@ -3,7 +3,7 @@ import {
   Button,
   ButtonGroup,
   Card, CardFooter, CardImg,
-  Tooltip
+  // Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -13,8 +13,15 @@ import { updateWatchedStatus } from '../../helpers/data/movieData';
 function MovieCard({
   user, movieObj, watchListMovieObj, setWatchlist
 }) {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  // const [watchedStatus, setWatchedStatus] = useState(false);
+  // const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [updatedMovieObj, setUpdatedMovieObj] = useState({
+    id: movieObj?.id,
+    imdbId: movieObj?.imdbId,
+    poster: movieObj?.poster,
+    subGenreId: movieObj?.subGenreId,
+    title: movieObj?.title,
+    watched: movieObj?.watched
+  });
   const [watchListObj, setWatchListObj] = useState({
     id: watchListMovieObj?.id,
     userId: user?.id,
@@ -23,7 +30,7 @@ function MovieCard({
 
   const handleWatchedBool = (e) => {
     e.preventDefault();
-    updateWatchedStatus(movieObj.id);
+    updateWatchedStatus(movieObj.id).then((resp) => setUpdatedMovieObj(resp));
   };
 
   const handleWatchListAdd = (e) => {
@@ -45,18 +52,18 @@ function MovieCard({
       <Button className='favBtn' id='watchedToolTip'
         onClick={(e) => { handleWatchedBool(e); }}>
             {
-              movieObj.watched === true
+              updatedMovieObj.watched === true
                 ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
                 : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
               }
-            <Tooltip
+            {/* <Tooltip
               isOpen={tooltipOpen}
               flip
               target="watchedToolTip"
               toggle={() => { setTooltipOpen(!tooltipOpen); }}
             >
               {movieObj.watched === true ? 'Already watched' : ''}
-            </Tooltip>
+            </Tooltip> */}
           </Button>
     }
 
