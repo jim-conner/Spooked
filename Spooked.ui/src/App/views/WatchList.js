@@ -34,16 +34,21 @@ function WatchList({ user }) {
         </Form>
       </div>
       <div className='homeContainer'>
-          {
-            filteredMoviesByTitle?.map((movieObj) => (
-              <WatchListCard
-                user={user}
-                key={movieObj.id}
-                movieObj={movieObj}
-                watchListMovieObj={watchListMovieObj}
-                setWatchListMovieObj={setWatchListMovieObj}
-                setWatchlist={setWatchlist}
-              />
+      {
+          filteredMoviesByTitle.length === 0
+            ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
+              {<div></div>}
+              {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oops, no movies on your watchlist... Get back to browsing</h5></div>}
+            </div>
+            : filteredMoviesByTitle?.map((movieObj) => (
+            <WatchListCard
+              user={user}
+              key={movieObj.id}
+              movieObj={movieObj}
+              watchListMovieObj={watchListMovieObj}
+              setWatchListMovieObj={setWatchListMovieObj}
+              setWatchlist={setWatchlist}
+            />
             ))
           }
       </div>

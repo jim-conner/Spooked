@@ -66,7 +66,7 @@ function NavBar({ user }) {
                   user
                     ? <NavItem>
                         <Link className='nav-link' to='/watchlist'>
-                          <i className="fas fa-book-dead"></i> Watch List
+                          <i className="fas fa-book-dead"></i> Watchlist
                         </Link>
                       </NavItem>
                     : ''

@@ -23,7 +23,7 @@ function MovieCard({
 
   const handleWatchedBool = (e) => {
     e.preventDefault();
-    updateWatchedStatus(movieObj.watched);
+    updateWatchedStatus(movieObj.id);
   };
 
   const handleWatchListAdd = (e) => {

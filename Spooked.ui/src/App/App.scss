@@ -23,13 +23,13 @@
 }
 
 .favBtn {
-  line-height: 10px;
-  width: 25px;
+  border: none !important;
+  background-color: transparent !important;
   font-size: 8pt;
   margin-right: 2%;
   position:absolute;
   top:0;
-  right:0;
+  left:0;
 }
 // .MovieCard {
   

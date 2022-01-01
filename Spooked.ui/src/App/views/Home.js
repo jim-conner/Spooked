@@ -74,20 +74,21 @@ function Home({ user }) {
         </Form>
       </div>
       {
-        <div className='homeHeader'>
-          {movies.length === 0
-            ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
-              {<div></div>}
-              {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, something must have spooked the movies....</h5></div>}
-            </div>
-            : filteredMoviesByTitle?.map((movieObj) => (
-                <MovieCard
-                  user={user}
-                  key={movieObj.id}
-                  movieObj={movieObj}
-                  setMovies={setMovies}
-                />
-            ))
+        <div className='homeContainer'>
+          {
+            filteredMoviesByTitle.length === 0
+              ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
+                {<div></div>}
+                {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, you scared off all the movies.  Try again....</h5></div>}
+              </div>
+              : filteredMoviesByTitle?.map((movieObj) => (
+                  <MovieCard
+                    user={user}
+                    key={movieObj.id}
+                    movieObj={movieObj}
+                    setMovies={setMovies}
+                  />
+              ))
           }
         </div>
       }
