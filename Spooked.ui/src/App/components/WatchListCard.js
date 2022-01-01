@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Badge,
   Button,
@@ -6,22 +6,24 @@ import {
   Card, CardBody, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
+import { removeMovieFromWatchList } from '../../helpers/data/watchListData';
 
 function WatchListCard({
-  user, movieObj, setWatchlist
+  // user,
+  movieObj,
+  setWatchlist
 }) {
-  const [watchListObj, setWatchListObj] = useState({
-    id: movieObj?.id,
-    userId: user?.id,
-    movieId: movieObj?.id
-  });
+  // const [watchListObj, setWatchListObj] = useState({
+  //   id: movieObj?.id,
+  //   userId: user?.id,
+  //   movieId: movieObj?.id
+  // });
 
-  const handleWatchListAdd = (e) => {
-    e.preventDefault();
-    addMovieToWatchList(watchListObj)
-      .then(() => setWatchListObj(watchListObj));
-  };
+  // const handleWatchListAdd = (e) => {
+  //   e.preventDefault();
+  //   addMovieToWatchList(watchListObj)
+  //     .then(() => setWatchListObj(watchListObj));
+  // };
 
   const handleWatchListRemove = (e) => {
     e.preventDefault();
@@ -66,11 +68,11 @@ function WatchListCard({
               </Badge>
             </div>
       <ButtonGroup>
-        <Button
+        {/* <Button
         onClick={(e) => (handleWatchListAdd(e))}
         color='primary'>
           +
-        </Button>
+        </Button> */}
         <Button
         onClick={(e) => (handleWatchListRemove(e))}
         color= 'warning'>

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import {
   Button,
-  ButtonGroup,
-  Card, CardFooter, CardImg,
+  // ButtonGroup,
+  Card, CardImg,
   // Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
+import { addMovieToWatchList } from '../../helpers/data/watchListData';
 import { updateWatchedStatus } from '../../helpers/data/movieData';
 // import MovieDetailModal from './MovieDetailModal';
 
 function MovieCard({
-  user, movieObj, watchListMovieObj, setWatchlist
+  user, movieObj, watchListMovieObj
 }) {
   // const [tooltipOpen, setTooltipOpen] = useState(false);
   const [updatedMovieObj, setUpdatedMovieObj] = useState({
@@ -39,11 +39,11 @@ function MovieCard({
       .then(() => setWatchListObj(watchListObj));
   };
 
-  const handleWatchListRemove = (e) => {
-    e.preventDefault();
-    removeMovieFromWatchList(movieObj.id)
-      .then((watchListArray) => setWatchlist(watchListArray));
-  };
+  // const handleWatchListRemove = (e) => {
+  //   e.preventDefault();
+  //   removeMovieFromWatchList(movieObj.id)
+  //     .then((watchListArray) => setWatchlist(watchListArray));
+  // };
 
   return (
     <div>
@@ -75,20 +75,13 @@ function MovieCard({
       user={user}
       movieObj={movieObj}
     /> */}
-    <CardFooter>
-    <ButtonGroup>
-            <Button
+    <div className='addToWatchListDiv d-flex'>
+            <Button className='addToWatchListButton'
             onClick={(e) => (handleWatchListAdd(e))}
-            color='primary'>
+            >
               +
             </Button>
-            <Button
-            onClick={(e) => (handleWatchListRemove(e))}
-            color= 'warning'>
-              -
-            </Button>
-          </ButtonGroup>
-    </CardFooter>
+            </div>
   </Card>
 </div>
   );
