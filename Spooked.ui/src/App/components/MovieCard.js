@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {
   Button,
   ButtonGroup,
-  Card, CardFooter, CardImg
-  // Tooltip
+  Card, CardFooter, CardImg,
+  Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -13,7 +13,7 @@ import { updateWatchedStatus } from '../../helpers/data/movieData';
 function MovieCard({
   user, movieObj, watchListMovieObj, setWatchlist
 }) {
-  // const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
   // const [watchedStatus, setWatchedStatus] = useState(false);
   const [watchListObj, setWatchListObj] = useState({
     id: watchListMovieObj?.id,
@@ -49,14 +49,14 @@ function MovieCard({
                 ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
                 : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
               }
-            {/* <Tooltip
+            <Tooltip
               isOpen={tooltipOpen}
               flip
               target="watchedToolTip"
               toggle={() => { setTooltipOpen(!tooltipOpen); }}
             >
-              Hello world!
-            </Tooltip> */}
+              {movieObj.watched === true ? 'Already watched' : ''}
+            </Tooltip>
           </Button>
     }
 
