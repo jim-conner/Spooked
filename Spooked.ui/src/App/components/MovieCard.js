@@ -79,7 +79,7 @@ function MovieCard({
             <Button className='addToWatchListButton'
             onClick={(e) => (handleWatchListAdd(e))}
             >
-              +
+              Add to Watchlist
             </Button>
             </div>
   </Card>

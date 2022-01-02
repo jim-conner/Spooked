@@ -11,7 +11,7 @@ import SubGenreSelect from '../components/SubGenreSelect';
 import TriggerSelect from '../components/TriggerSelect';
 
 function Home({ user }) {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
@@ -38,10 +38,6 @@ function Home({ user }) {
     } else {
       getAllMovies().then(setMovies);
     }
-
-    // return () => {
-    //   cleanup
-    // }
   }, [select, selectTrigger]);
 
   const filteredMoviesByTitle = search.length === 0
@@ -76,7 +72,7 @@ function Home({ user }) {
       {
         <div className='homeContainer'>
           {
-            filteredMoviesByTitle.length === 0
+            filteredMoviesByTitle && filteredMoviesByTitle.length === 0
               ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
                 {<div></div>}
                 {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, you scared off all the movies.  Try again....</h5></div>}
