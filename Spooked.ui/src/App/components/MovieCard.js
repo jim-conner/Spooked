@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import {
   Button,
-<<<<<<< HEAD
-  ButtonGroup,
-  Card, CardFooter, CardImg, Progress
-=======
   // ButtonGroup,
   Card, CardImg,
   // Tooltip
->>>>>>> development
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList } from '../../helpers/data/watchListData';
@@ -55,13 +50,6 @@ function MovieCard({
     <>
   <Card color='dark' className='movieCard'>
     {
-<<<<<<< HEAD
-      movieObj.watched === false
-        ? <div className='favBtn'>
-            <i className='fas fa-check fa-2x' style={{ color: 'orangered' }}></i>
-          </div>
-        : ''
-=======
       <Button className='favBtn' id='watchedToolTip'
         onClick={(e) => { handleWatchedBool(e); }}>
             {
@@ -78,7 +66,6 @@ function MovieCard({
               {movieObj.watched === true ? 'Already watched' : ''}
             </Tooltip> */}
           </Button>
->>>>>>> development
     }
 
     <CardImg
@@ -90,29 +77,6 @@ function MovieCard({
       user={user}
       movieObj={movieObj}
     />
-<<<<<<< HEAD
-    <div>
-      <Progress
-        color="danger"
-        value={50}
-      />
-        {/* <img className={{}} alt="Blood Bar"src={blood}/> */}
-    </div>
-    <CardFooter>
-    <ButtonGroup>
-            <Button
-            onClick={(e) => (handleWatchListAdd(e))}
-            color='primary'>
-              +
-            </Button>
-            <Button
-            onClick={(e) => (handleWatchListRemove(e))}
-            color= 'warning'>
-              -
-            </Button>
-          </ButtonGroup>
-    </CardFooter>
-=======
       <Button
       className='addToWatchListButton'
       onClick={(e) => (handleWatchListAdd(e))}
@@ -120,7 +84,6 @@ function MovieCard({
       >
         Add to Watchlist
       </Button>
->>>>>>> development
   </Card>
 </>
   );

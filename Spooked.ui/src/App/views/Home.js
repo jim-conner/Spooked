@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'reactstrap';
-import MovieCard from '../components/MovieCard';
 import '../App.scss';
 import {
   getAllMovies, getMoviesBySingleTrigger, getMoviesBySubGenre, getMoviesByTriggerAndSubGenre
