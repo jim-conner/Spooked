@@ -26,6 +26,12 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("filteredMovies")]
+        public IActionResult getFilteredMovies(Guid triggerId, int subGenreId)
+        {
+            return Ok(_repo.getMoviesByTriggerAndSubGenre(triggerId, subGenreId));
+        }
+
         [HttpGet("trigger/{triggerId}")]
         public IActionResult FilterMoviesByTriggers(Guid triggerId)
         {
@@ -73,9 +79,22 @@ namespace Spooked.Controllers
                 return NotFound($"Didn't find any movies with SubGenreId: {subGenreId}.");
             }
             return Ok(moviesBySubGenre);
-
         }
 
+        [HttpPut("movieId/watched/{id}")]
+        public IActionResult updateWatchedBool(Guid id)
+        {
+            var movieToUpdate = _repo.GetById(id);
+
+            if (movieToUpdate == null)
+                return NotFound($"Could not find a movie with ID: {id} to update.");
+
+            movieToUpdate.Watched = !movieToUpdate.Watched;
+
+            var updatedMovie = _repo.ToggleWatched(id, movieToUpdate);
+
+            return Ok(updatedMovie);
+        }
         
     }
 }

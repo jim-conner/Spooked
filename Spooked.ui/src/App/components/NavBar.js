@@ -56,7 +56,7 @@ function NavBar({ user }) {
           >
             <NavItem>
               <Link className='nav-link' to='/'>
-                {<i className="fas fa-spider"></i>} Browse
+                {<i className="fas fa-spider"></i>} BROWSE
               </Link>
             </NavItem>
             {
@@ -66,7 +66,7 @@ function NavBar({ user }) {
                   user
                     ? <NavItem>
                         <Link className='nav-link' to='/watchlist'>
-                          <i className="fas fa-book-dead"></i> Watch List
+                          <i className="fas fa-book-dead"></i> WATCHLIST
                         </Link>
                       </NavItem>
                     : ''

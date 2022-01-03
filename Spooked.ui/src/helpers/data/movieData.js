@@ -27,6 +27,12 @@ const getMoviesBySingleTrigger = (triggerId) => new Promise((resolve, reject) =>
     .catch((error) => reject(error));
 });
 
+const getMoviesByTriggerAndSubGenre = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/movies/filteredmovies`)
+    .then((resp) => resolve(Object.values(resp.data)))
+    .catch((error) => reject(error));
+});
+
 // OmdbAPI Movie
 const getOmdbByImdbId = (imdbId) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/omdbmovies/${imdbId}`)
@@ -34,7 +40,7 @@ const getOmdbByImdbId = (imdbId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// Combine json objs
+// Combine localdb obj & OmdbAPI json obj
 const returnLocalOmdb = (id, imdbId) => new Promise((resolve, reject) => {
   const getLocalArray = getSingleMovie(id);
   const getOmdbyArray = getOmdbByImdbId(imdbId);
@@ -43,6 +49,13 @@ const returnLocalOmdb = (id, imdbId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// toggle T/F movied watched status
+const updateWatchedStatus = (id) => new Promise((resolve, reject) => {
+  axios.put(`${dbUrl}/movies/movieId/watched/${id}`)
+    .then(() => getSingleMovie(id)).then(resolve)
+    .catch((error) => reject(error));
+});
+
 export {
-  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre, getMoviesBySingleTrigger
+  getAllMovies, getSingleMovie, getOmdbByImdbId, returnLocalOmdb, getMoviesBySubGenre, getMoviesBySingleTrigger, getMoviesByTriggerAndSubGenre, updateWatchedStatus
 };

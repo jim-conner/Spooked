@@ -25,6 +25,24 @@ namespace Spooked.DataAccess
             return movies;
         }
 
+        internal object getMoviesByTriggerAndSubGenre(Guid triggerId, int subGenreId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var moviesByTrigger = @"Select *
+                                    From Movie m
+                                    Where NOT EXISTS (
+	                                    Select t.Id From Movie
+	                                    INNER JOIN [Trigger] t on m.Id = t.MovieId
+	                                    Where t.Id = @triggerId 
+                                    )
+                                    AND m.SubGenreId = @subgenreId";
+
+            var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId, subgenreId = subGenreId });
+
+            return filteredMovies;
+        }
+
         internal Movie GetById(Guid Id)
         {
             using var db = new SqlConnection(_connectionString);
@@ -69,6 +87,26 @@ namespace Spooked.DataAccess
             }
         }
 
+        internal object ToggleWatched(Guid id, Movie movieToUpdate)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Update Movie
+                        Set 
+	                        ImdbId = @imdbId, 
+	                        Title = @title, 
+	                        SubGenreId = @subGenreId, 
+	                        Watched = @watched,
+	                        Poster = @poster
+                        Output inserted.*
+                        Where id = @id";
+
+            movieToUpdate.Id = id;
+            var updatedMovieToUpdate = db.QuerySingleOrDefault<Movie>(sql, movieToUpdate);
+
+            return updatedMovieToUpdate;
+        }
+
         internal object GetBySubGenreId(int subGenreId)
         {
             using var db = new SqlConnection(_connectionString);
@@ -78,6 +116,8 @@ namespace Spooked.DataAccess
                                 Where SubGenreId = @subGenreId";
                 
                 var filteredMovies = db.Query<Movie>(movieSql, new { subGenreId = subGenreId });
+
+
 
                 return filteredMovies;
 
