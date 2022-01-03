@@ -16,7 +16,7 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
     setSelectTrigger(e.target.value);
   };
   return (
-    <>
+    <div className='inputContainer'>
       <FormGroup>
             <Input
               id="triggerSelect"
@@ -42,7 +42,7 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
               }
             </Input>
         </FormGroup>
-    </>
+    </div>
   );
 }
 

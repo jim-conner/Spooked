@@ -46,7 +46,7 @@ function MovieCard({
   // };
 
   return (
-    <div>
+    <>
   <Card color='dark' className='movieCard'>
     {
       <Button className='favBtn' id='watchedToolTip'
@@ -75,17 +75,15 @@ function MovieCard({
       user={user}
       movieObj={movieObj}
     /> */}
-    {/* <div className='addToWatchListDiv d-flex'> */}
-            <Button
-            className='addToWatchListButton'
-            onClick={(e) => (handleWatchListAdd(e))}
-            size='lg'
-            >
-              Add to Watchlist
-            </Button>
-            {/* </div> */}
+      <Button
+      className='addToWatchListButton'
+      onClick={(e) => (handleWatchListAdd(e))}
+      size='lg'
+      >
+        Add to Watchlist
+      </Button>
   </Card>
-</div>
+</>
   );
 }
 

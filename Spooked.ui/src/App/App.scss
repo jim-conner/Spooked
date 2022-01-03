@@ -25,13 +25,14 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 2%;
+  margin: 1%;
 }
 
 .movieCard {
   position: relative;
   transition: transform 0.2s;
-  // margin: 5%;
+  // max-height: 400px;
+  margin: 15px;
 }
 
 .movieCard:hover {

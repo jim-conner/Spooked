@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Badge,
   Button,
-  ButtonGroup,
   Card, CardBody, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -67,18 +66,12 @@ function WatchListCard({
                 Example3
               </Badge>
             </div>
-      <ButtonGroup>
-        {/* <Button
-        onClick={(e) => (handleWatchListAdd(e))}
-        color='primary'>
-          +
-        </Button> */}
         <Button
+        className='addToWatchListButton'
         onClick={(e) => (handleWatchListRemove(e))}
-        color= 'warning'>
+        >
           -
         </Button>
-      </ButtonGroup>
     </CardBody>
   </Card>
 </div>

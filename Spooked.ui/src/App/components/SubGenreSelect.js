@@ -17,7 +17,7 @@ function SubGenreSelect({ select, setSelect }) {
   };
 
   return (
-    <>
+    <div className='inputContainer'>
         <FormGroup>
             <Input
               id="subGenreSelect"
@@ -43,7 +43,7 @@ function SubGenreSelect({ select, setSelect }) {
               }
             </Input>
         </FormGroup>
-    </>
+    </div>
   );
 }
 
