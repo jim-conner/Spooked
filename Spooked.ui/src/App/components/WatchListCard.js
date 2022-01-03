@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Badge,
   Button,
-  ButtonGroup,
-  Card, CardBody, CardImg
+  Card, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { addMovieToWatchList, removeMovieFromWatchList } from '../../helpers/data/watchListData';
+import { removeMovieFromWatchList } from '../../helpers/data/watchListData';
 
 function WatchListCard({
-  user, movieObj, setWatchlist
+  // user,
+  movieObj,
+  setWatchlist
 }) {
-  const [watchListObj, setWatchListObj] = useState({
-    id: movieObj?.id,
-    userId: user?.id,
-    movieId: movieObj?.id
-  });
+  // const [watchListObj, setWatchListObj] = useState({
+  //   id: movieObj?.id,
+  //   userId: user?.id,
+  //   movieId: movieObj?.id
+  // });
 
-  const handleWatchListAdd = (e) => {
-    e.preventDefault();
-    addMovieToWatchList(watchListObj)
-      .then(() => setWatchListObj(watchListObj));
-  };
+  // const handleWatchListAdd = (e) => {
+  //   e.preventDefault();
+  //   addMovieToWatchList(watchListObj)
+  //     .then(() => setWatchListObj(watchListObj));
+  // };
 
   const handleWatchListRemove = (e) => {
     e.preventDefault();
@@ -39,13 +39,11 @@ function WatchListCard({
           </div>
         : ''
     } */}
-
     <CardImg
       alt="Movie Poster"
       src={movieObj.movie.poster}
     />
-    <CardBody>
-            <div>
+    {/* <div>
               <Badge
                 color="warning"
                 pill
@@ -64,20 +62,14 @@ function WatchListCard({
               >
                 Example3
               </Badge>
-            </div>
-      <ButtonGroup>
+            </div> */}
         <Button
-        onClick={(e) => (handleWatchListAdd(e))}
-        color='primary'>
-          +
-        </Button>
-        <Button
+        className='addToWatchListButton'
         onClick={(e) => (handleWatchListRemove(e))}
-        color= 'warning'>
-          -
+        size='lg'
+        >
+          Remove from Watchlist
         </Button>
-      </ButtonGroup>
-    </CardBody>
   </Card>
 </div>
   );
