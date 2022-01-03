@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  Badge,
   Button,
-  Card, CardBody, CardImg
+  Card, CardImg
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { removeMovieFromWatchList } from '../../helpers/data/watchListData';
@@ -40,13 +39,11 @@ function WatchListCard({
           </div>
         : ''
     } */}
-
     <CardImg
       alt="Movie Poster"
       src={movieObj.movie.poster}
     />
-    <CardBody>
-            <div>
+    {/* <div>
               <Badge
                 color="warning"
                 pill
@@ -65,14 +62,14 @@ function WatchListCard({
               >
                 Example3
               </Badge>
-            </div>
+            </div> */}
         <Button
         className='addToWatchListButton'
         onClick={(e) => (handleWatchListRemove(e))}
+        size='lg'
         >
-          -
+          Remove from Watchlist
         </Button>
-    </CardBody>
   </Card>
 </div>
   );

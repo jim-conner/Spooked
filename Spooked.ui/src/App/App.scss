@@ -31,8 +31,7 @@
 .movieCard {
   position: relative;
   transition: transform 0.2s;
-  // max-height: 400px;
-  margin: 15px;
+  margin: 10px;
 }
 
 .movieCard:hover {
@@ -69,3 +68,7 @@
 .addToWatchListButton:hover {
   background-color: rgba($color: orangered, $alpha: 0.9) !important;
 }
+
+// .cardModal {
+
+// }

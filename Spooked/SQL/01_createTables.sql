@@ -18,7 +18,8 @@ Create Table dbo.SubGenre (
 Create Table dbo.[Trigger] (
 	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[Name] varchar(50) NOT NULL,
-	[MovieId] uniqueidentifier 
+	[Value] int NOT NULL,
+	[MovieId] uniqueidentifier NOT NULL
 	Constraint FK_Trigger_Movie Foreign Key (MovieId)
 		References dbo.[Movie] (Id)
 );

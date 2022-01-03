@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, CardBody, ModalBody, CardTitle, CardSubtitle, CardFooter, Badge
+  Modal, CardImg, CardImgOverlay, CardText, ModalBody, CardFooter, Badge
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 
@@ -31,38 +31,26 @@ function MovieDetailModal({ movieObj }) {
       >
         <ModalBody>
           <CardImg
-            alt="Movie Detail"
+            alt="Movie Detail Poster"
             src={fullMovieObj.poster}
           />
-          <CardBody>
-            <CardTitle tag="h5">
-            {movieObj.title}
-            </CardTitle>
-            <CardSubtitle
-              className="mb-2 text-muted"
-              tag="h6"
-            >
-              {fullMovieObj.Year} {' | '} {fullMovieObj.Rated}
-            </CardSubtitle>
-            <CardText>
-            <i className="fab fa-imdb fa-2x"></i> {fullMovieObj.imdbRating}{' | '}
-             {movieObj.watched === false ? 'unwatched' : 'watched'}{' | '}
-                <Badge
+          <div>
+            <Badge color="primary">{fullMovieObj.Year}</Badge>
+            <Badge color="primary">{fullMovieObj.Rated}</Badge>
+            <Badge color="primary"><i className="fab fa-imdb"></i> {fullMovieObj.imdbRating}</Badge>
+            <Badge
                   color="primary"
                   pill
                 >
-                  SubGenre: {fullMovieObj.subGenreId}
-                </Badge>
-              <small className="text-muted">
-                Subgenre should go here
-              </small>
-            </CardText>
-            <CardText>
+                  SubGenre: {movieObj.subGenreId}
+            </Badge>
+
+          </div>
+           <CardText>
               {fullMovieObj.Plot}
             </CardText>
-          </CardBody>
           <CardFooter>
-          <div>
+            <div>
             <Badge
               color="warning"
               pill

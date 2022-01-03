@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import { addMovieToWatchList } from '../../helpers/data/watchListData';
 import { updateWatchedStatus } from '../../helpers/data/movieData';
-// import MovieDetailModal from './MovieDetailModal';
+import MovieDetailModal from './MovieDetailModal';
 
 function MovieCard({
   user, movieObj, watchListMovieObj
@@ -70,11 +70,12 @@ function MovieCard({
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
+      style={{ maxHeight: '400px' }}
     />
-    {/* <MovieDetailModal
+    <MovieDetailModal
       user={user}
       movieObj={movieObj}
-    /> */}
+    />
       <Button
       className='addToWatchListButton'
       onClick={(e) => (handleWatchListAdd(e))}
