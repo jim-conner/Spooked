@@ -75,13 +75,15 @@ function MovieCard({
       user={user}
       movieObj={movieObj}
     /> */}
-    <div className='addToWatchListDiv d-flex'>
-            <Button className='addToWatchListButton'
+    {/* <div className='addToWatchListDiv d-flex'> */}
+            <Button
+            className='addToWatchListButton'
             onClick={(e) => (handleWatchListAdd(e))}
+            size='lg'
             >
               Add to Watchlist
             </Button>
-            </div>
+            {/* </div> */}
   </Card>
 </div>
   );

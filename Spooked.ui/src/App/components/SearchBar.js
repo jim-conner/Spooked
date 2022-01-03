@@ -12,7 +12,7 @@ import {
 
 function SearchBar({ search, setSearch }) {
   return (
-      <>
+      <div className='inputContainer'>
         <FormGroup>
           <InputGroup>
             <Button disabled outline style={{ color: 'orangered' }}>
@@ -26,7 +26,7 @@ function SearchBar({ search, setSearch }) {
             />
           </InputGroup>
         </FormGroup>
-    </>
+    </div>
   );
 }
 

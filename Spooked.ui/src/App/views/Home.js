@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Container, Form } from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import MovieCard from '../components/MovieCard';
 import '../App.scss';
 import {
@@ -12,7 +12,6 @@ import TriggerSelect from '../components/TriggerSelect';
 
 function Home({ user }) {
   const [movies, setMovies] = useState(null);
-  // const [filteredMovies, setFilteredMovies] = useState([]);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
   const [selectTrigger, setSelectTrigger] = useState('');
@@ -22,11 +21,6 @@ function Home({ user }) {
     setSelect(0);
     setSelectTrigger('');
   };
-
-  // useEffect(() => {
-  //   debugger;
-  //   getAllMovies().then(setMovies);
-  // }, []);
 
   useEffect(() => {
     if (select !== 0 && selectTrigger !== '') {
@@ -45,7 +39,7 @@ function Home({ user }) {
     : movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <Container>
+    <div>
       <div className='homeHeader'>
         <Form inline>
           <SearchBar
@@ -88,14 +82,12 @@ function Home({ user }) {
           }
         </div>
       }
-    </Container>
+    </div>
   );
 }
 
 Home.propTypes = {
   user: PropTypes.any
-  // movies: PropTypes.array,
-  // movieObj: PropTypes.object,
 };
 
 export default Home;

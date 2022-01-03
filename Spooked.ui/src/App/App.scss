@@ -11,33 +11,30 @@
 }
 
 .homeHeader {
-  display: inline-flex;
-  margin: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: 2%;
+}
+
+.inputContainer {
+  padding: 2%;
 }
 
 .homeContainer {
   display: flex;
-  flex-direction: row nowrap;
-  justify-content: space-around;
-  align-items: stretch;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 2%;
 }
 
-.favBtn {
-  border: none !important;
-  background-color: transparent !important;
-  font-size: 8pt;
-  margin-right: 2%;
-  position:absolute;
-  top:0;
-  right:0;
-}
 .movieCard {
   position: relative;
   transition: transform 0.2s;
+  // margin: 5%;
 }
 
 .movieCard:hover {
-  // cursor: pointer;
 	transform: scale(1.1);
 }
 
@@ -45,31 +42,29 @@
   opacity: 1;
 }
 
-.addToWatchListDiv {
+.favBtn {
   border: none !important;
   background-color: transparent !important;
+  margin: 2%;
   position:absolute;
-  width: 100%;
-  bottom:0;
+  top:0;
+  right:0;
+}
+
+.favBtn:hover {
+  background-color: rgba($color: orangered, $alpha: 0.1) !important;
 }
 
 .addToWatchListButton {
   border: none !important;
-	background-color: rgba($color: orangered, $alpha: 0.8) !important;
+	background-color: rgba($color: orangered, $alpha: 0.7) !important;
   position: absolute;
 	width: 100%;
 	transition: 0.5s ease;
 	opacity: 0;
 	bottom: 0;
-	// font-size: 20px;
-	// padding: 20px;
-	// text-align: center;
 }
 
-.homeHeader .form-group {
-  margin-right: 5px;
+.addToWatchListButton:hover {
+  background-color: rgba($color: orangered, $alpha: 0.9) !important;
 }
-
-// .selectContainer {
-  
-// }

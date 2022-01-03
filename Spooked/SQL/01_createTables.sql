@@ -16,7 +16,7 @@ Create Table dbo.SubGenre (
 
 -- create Trigger Table
 Create Table dbo.[Trigger] (
-	Id uniqueidentifier NOT NULL primary key default(newid()),
+	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[Name] varchar(50) NOT NULL,
 	[MovieId] uniqueidentifier 
 	Constraint FK_Trigger_Movie Foreign Key (MovieId)
@@ -25,13 +25,13 @@ Create Table dbo.[Trigger] (
 
 -- create User Table
 Create Table dbo.[User] (
-	Id uniqueidentifier NOT NULL primary key default(newid()),
+	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	FirebaseId varchar(50) NOT NULL,
 );
 
 -- create WatchList Table
 Create Table dbo.[WatchList](
-	Id uniqueidentifier NOT NULL primary key default(newid()),
+	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[UserId] uniqueidentifier NOT NULL,
 	[MovieId] uniqueidentifier NOT NULL,
 	Constraint FK_Watchlist_User Foreign Key (UserId)
