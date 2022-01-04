@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { addMovieToWatchList } from '../../helpers/data/watchListData';
 import { updateWatchedStatus } from '../../helpers/data/movieData';
 import MovieDetailModal from './MovieDetailModal';
-// import blood from '../assets/Blood-Falling-PNG-File.png';
 
 function MovieCard({
   user, movieObj, watchListMovieObj

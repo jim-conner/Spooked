@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardText, ModalBody, CardFooter, Badge, Button
+  Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 import { getTotalTriggersValue } from '../../helpers/data/triggerData';
 import SpookMeter from './SpookMeter';
+import blood from '../assets/Blood-Falling-PNG-File.png';
 
 function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
@@ -35,12 +36,12 @@ function MovieDetailModal({ movieObj }) {
       className='cardModal'
       isOpen={modal}
       toggle={toggle}
+      centered
       >
         <ModalBody>
-          <CardImg
-            alt="Movie Detail Poster"
-            src={fullMovieObj.poster}
-          />
+          <ModalHeader toggle={toggle}>
+            {fullMovieObj.title}
+          </ModalHeader>
           <div>
             <Badge color="primary">{fullMovieObj.Year}</Badge>
             <Badge color="primary">{fullMovieObj.Rated}</Badge>
@@ -71,15 +72,22 @@ function MovieDetailModal({ movieObj }) {
             >
               Example3
             </Badge>
-          </div>
+            </div>
            <CardText>
               {fullMovieObj.Plot}
             </CardText>
-          <CardFooter>
-          <SpookMeter
-          triggerBarValue={triggerBarValue}
-        />
-          </CardFooter>
+            <ModalHeader>
+              Spook-O-Meter
+            </ModalHeader>
+            <div>
+              <SpookMeter
+                triggerBarValue={triggerBarValue}
+              />
+              <CardImg
+                alt="Movie Detail Poster"
+                src={blood}
+              />
+            </div>
         </ModalBody>
       </Modal>
     </div>
