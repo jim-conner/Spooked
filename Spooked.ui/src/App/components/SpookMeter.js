@@ -19,7 +19,7 @@ function SpookMeter({ triggerBarValue }) {
         color="danger"
         value={triggerBarValue}
       >
-        Pretty messed up
+        Seriously Messed Up
       </Progress>;
         break;
       case (triggerBarValue >= 50):
@@ -27,7 +27,7 @@ function SpookMeter({ triggerBarValue }) {
         color="danger"
         value={triggerBarValue}
       >
-        Pretty messed up
+        Sinister
       </Progress>;
         break;
       case (triggerBarValue >= 25):
@@ -35,7 +35,7 @@ function SpookMeter({ triggerBarValue }) {
         color="danger"
         value={triggerBarValue}
       >
-        Pretty messed up
+        Extra Spooky
       </Progress>;
         break;
       default:
@@ -43,7 +43,6 @@ function SpookMeter({ triggerBarValue }) {
         color="danger"
         value={triggerBarValue}
       >
-        TEST
       </Progress>;
     }
     return component;

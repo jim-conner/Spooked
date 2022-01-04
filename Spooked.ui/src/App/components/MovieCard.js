@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, Card, CardImg
-  // Tooltip
+  Button, Card, CardImg, Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList } from '../../helpers/data/watchListData';
@@ -11,7 +10,7 @@ import MovieDetailModal from './MovieDetailModal';
 function MovieCard({
   user, movieObj, watchListMovieObj
 }) {
-  // const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [tooltipOpen, setToolTipOpen] = useState(false);
   const [updatedMovieObj, setUpdatedMovieObj] = useState({
     id: movieObj?.id,
     imdbId: movieObj?.imdbId,
@@ -26,6 +25,8 @@ function MovieCard({
     movieId: movieObj?.id
   });
 
+  const toggle = () => setToolTipOpen(!tooltipOpen);
+
   const handleWatchedBool = (e) => {
     e.preventDefault();
     updateWatchedStatus(movieObj.id).then((resp) => setUpdatedMovieObj(resp));
@@ -36,12 +37,6 @@ function MovieCard({
     addMovieToWatchList(watchListObj)
       .then(() => setWatchListObj(watchListObj));
   };
-
-  // const handleWatchListRemove = (e) => {
-  //   e.preventDefault();
-  //   removeMovieFromWatchList(movieObj.id)
-  //     .then((watchListArray) => setWatchlist(watchListArray));
-  // };
 
   return (
     <>
@@ -54,14 +49,15 @@ function MovieCard({
                 ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
                 : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
               }
-            {/* <Tooltip
-              isOpen={tooltipOpen}
-              flip
+            <Tooltip
               target="watchedToolTip"
-              toggle={() => { setTooltipOpen(!tooltipOpen); }}
+              placement='bottom'
+              toggle={toggle}
+              isOpen={tooltipOpen}
+              style={{ pointerEvents: 'none' }}
             >
-              {movieObj.watched === true ? 'Already watched' : ''}
-            </Tooltip> */}
+              {updatedMovieObj.watched === true ? 'watched true' : 'watched false'}
+            </Tooltip>
           </Button>
     }
       <MovieDetailModal
