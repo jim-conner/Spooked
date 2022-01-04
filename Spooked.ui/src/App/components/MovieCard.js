@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button,
-  // ButtonGroup,
-  Card, CardImg,
+  Button, Card, CardImg
   // Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -67,15 +65,14 @@ function MovieCard({
             </Tooltip> */}
           </Button>
     }
-
+      <MovieDetailModal
+        user={user}
+        movieObj={movieObj}
+      />
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
       style={{ maxHeight: '400px' }}
-    />
-    <MovieDetailModal
-      user={user}
-      movieObj={movieObj}
     />
       <Button
       className='addToWatchListButton'

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, ModalBody, CardFooter, Badge
+  Modal, CardImg, CardText, ModalBody, CardFooter, Badge, Button
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
+import { getTotalTriggersValue } from '../../helpers/data/triggerData';
+import SpookMeter from './SpookMeter';
 
 function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
+  const [triggerBarValue, setTriggerBarValue] = useState(0);
 
   const toggle = () => setModal(!modal);
 
@@ -16,18 +19,22 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
+    getTotalTriggersValue(movieId).then((resp) => setTriggerBarValue(resp));
   };
 
   return (
-    <CardImgOverlay
-      style={{ cursor: 'pointer' }}
+    <div>
+    <Button
+      size='lg'
+      className='modalBtn'
       onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
     >
+      View Detail
+      </Button>
       <Modal
       className='cardModal'
       isOpen={modal}
       toggle={toggle}
-      centered
       >
         <ModalBody>
           <CardImg
@@ -39,18 +46,13 @@ function MovieDetailModal({ movieObj }) {
             <Badge color="primary">{fullMovieObj.Rated}</Badge>
             <Badge color="primary"><i className="fab fa-imdb"></i> {fullMovieObj.imdbRating}</Badge>
             <Badge
-                  color="primary"
-                  pill
-                >
-                  SubGenre: {movieObj.subGenreId}
+              color="primary"
+              pill
+            >
+              SubGenre: {movieObj.subGenreId}
             </Badge>
-
           </div>
-           <CardText>
-              {fullMovieObj.Plot}
-            </CardText>
-          <CardFooter>
-            <div>
+          <div>
             <Badge
               color="warning"
               pill
@@ -70,10 +72,17 @@ function MovieDetailModal({ movieObj }) {
               Example3
             </Badge>
           </div>
+           <CardText>
+              {fullMovieObj.Plot}
+            </CardText>
+          <CardFooter>
+          <SpookMeter
+          triggerBarValue={triggerBarValue}
+        />
           </CardFooter>
         </ModalBody>
       </Modal>
-    </CardImgOverlay>
+    </div>
   );
 }
 

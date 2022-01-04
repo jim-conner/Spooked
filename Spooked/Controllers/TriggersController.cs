@@ -27,6 +27,19 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
+        [HttpGet("ometer/{movieId}")]
+        public IActionResult GetTriggerValueTotal(Guid movieId)
+        {
+            var totalTriggerValues = _repo.GetTotalTriggersValue(movieId);
+
+            if (totalTriggerValues < 0)
+            {
+                return NotFound($"Can't return negative integers for total trigger value.");
+            }
+            
+            return Ok(totalTriggerValues);
+        }
+
         [HttpGet("movieTriggers/{movieId}")]
         public IActionResult GetTriggersByMovieId(Guid movieId)
         {

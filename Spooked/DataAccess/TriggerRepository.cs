@@ -33,12 +33,29 @@ namespace Spooked.DataAccess
                         From [Trigger] 
                         Where MovieId = @movieId
                         Order By [Name] Asc";
-                        
+
 
             var movieTriggers = db.Query<Trigger>(sql, new { movieId = movieId });
 
             return movieTriggers;
+        }
 
+        internal int GetTotalTriggersValue(Guid movieId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var sql = @"Select Sum([Value])
+                    From [Trigger] 
+                    Where MovieId = @movieId";
+
+            var totalValue = db.ExecuteScalar<int>(sql, new { movieId = movieId });
+
+            if (totalValue > 100)
+            {
+                totalValue = 100;
+            }
+
+            return totalValue;
         }
     }
 
