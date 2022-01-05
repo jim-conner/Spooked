@@ -14,14 +14,22 @@ Create Table dbo.SubGenre (
 	[Name] varchar(50) NOT NULL,
 );
 
--- create Trigger Table
-Create Table dbo.[Trigger] (
+-- create MovieTrigger Table
+Create Table dbo.[MovieTrigger] (
 	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[Name] varchar(50) NOT NULL,
 	[Value] int NOT NULL,
-	[MovieId] uniqueidentifier NOT NULL
-	Constraint FK_Trigger_Movie Foreign Key (MovieId)
+	[imdbMovieId] uniqueidentifier NOT NULL
+	Constraint FK_MovieTrigger_Movie Foreign Key ([imdbMovieId])
 		References dbo.[Movie] (Id)
+);
+
+-- create Trigger Table
+Create Table dbo.[Trigger] (
+	Id int NOT NULL identity primary key,
+	[Name] varchar(50) NOT NULL,
+	Constraint FK_Trigger_MovieTrigger Foreign Key (Id)
+		References dbo.[MovieTrigger] (triggerId)
 );
 
 -- create User Table
