@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button,
-  // ButtonGroup,
-  Card, CardImg,
-  // Tooltip
+  Button, Card, CardImg, Tooltip
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { addMovieToWatchList } from '../../helpers/data/watchListData';
@@ -13,7 +10,7 @@ import MovieDetailModal from './MovieDetailModal';
 function MovieCard({
   user, movieObj, watchListMovieObj
 }) {
-  // const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [tooltipOpen, setToolTipOpen] = useState(false);
   const [updatedMovieObj, setUpdatedMovieObj] = useState({
     id: movieObj?.id,
     imdbId: movieObj?.imdbId,
@@ -28,6 +25,8 @@ function MovieCard({
     movieId: movieObj?.id
   });
 
+  const toggle = () => setToolTipOpen(!tooltipOpen);
+
   const handleWatchedBool = (e) => {
     e.preventDefault();
     updateWatchedStatus(movieObj.id).then((resp) => setUpdatedMovieObj(resp));
@@ -39,42 +38,39 @@ function MovieCard({
       .then(() => setWatchListObj(watchListObj));
   };
 
-  // const handleWatchListRemove = (e) => {
-  //   e.preventDefault();
-  //   removeMovieFromWatchList(movieObj.id)
-  //     .then((watchListArray) => setWatchlist(watchListArray));
-  // };
-
   return (
     <>
   <Card color='dark' className='movieCard'>
     {
-      <Button className='favBtn' id='watchedToolTip'
-        onClick={(e) => { handleWatchedBool(e); }}>
+        <Button className='favBtn' id='watchedToolTip'
+          onClick={(e) => { handleWatchedBool(e); }}>
             {
               updatedMovieObj.watched === true
                 ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
                 : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
               }
-            {/* <Tooltip
-              isOpen={tooltipOpen}
-              flip
+      <div>
+
+            <Tooltip
               target="watchedToolTip"
-              toggle={() => { setTooltipOpen(!tooltipOpen); }}
+              placement='top'
+              toggle={toggle}
+              isOpen={tooltipOpen}
+              delay={{ show: '200', hide: '0' }}
             >
-              {movieObj.watched === true ? 'Already watched' : ''}
-            </Tooltip> */}
+              {updatedMovieObj.watched === true ? 'Watched' : 'Mark as Watched'}
+            </Tooltip>
+      </div>
           </Button>
     }
-
+      <MovieDetailModal
+        user={user}
+        movieObj={movieObj}
+      />
     <CardImg
       alt="Movie Poster"
       src={movieObj.poster}
       style={{ maxHeight: '400px' }}
-    />
-    <MovieDetailModal
-      user={user}
-      movieObj={movieObj}
     />
       <Button
       className='addToWatchListButton'

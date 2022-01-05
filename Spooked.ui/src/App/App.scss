@@ -69,6 +69,24 @@
   background-color: rgba($color: orangered, $alpha: 0.9) !important;
 }
 
-// .cardModal {
+.cardModal {
+  color: white;
 
-// }
+}
+
+.cardModal .modal-content{
+  background-color: rgb(27, 26, 26);
+}
+
+.modalBtn {
+  border: none !important;
+  background-color: transparent !important;
+  margin: 2%;
+  position:absolute;
+  top: 30%;
+  left: 25%;
+}
+
+.modalBtn:hover{
+  background-color: rgba($color: orangered, $alpha: 0.5) !important;
+}

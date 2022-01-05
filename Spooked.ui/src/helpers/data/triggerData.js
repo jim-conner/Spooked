@@ -11,4 +11,10 @@ const getAllTriggers = () => new Promise((resolve, reject) => {
 
 // const getMoviesByTriggers
 
-export default getAllTriggers;
+const getTotalTriggersValue = (movieId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/triggers/ometer/${movieId}`)
+    .then((resp) => resolve((resp.data)))
+    .catch((error) => reject(error));
+});
+
+export { getAllTriggers, getTotalTriggersValue };

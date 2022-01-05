@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   FormGroup, Input
 } from 'reactstrap';
-import getAllTriggers from '../../helpers/data/triggerData';
+import { getAllTriggers } from '../../helpers/data/triggerData';
 
 function TriggerSelect({ selectTrigger, setSelectTrigger }) {
   const [triggers, setTriggers] = useState([]);

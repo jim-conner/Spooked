@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'reactstrap';
-import MovieCard from '../components/MovieCard';
 import '../App.scss';
 import {
   getAllMovies, getMoviesBySingleTrigger, getMoviesBySubGenre, getMoviesByTriggerAndSubGenre
 } from '../../helpers/data/movieData';
+import MovieCard from '../components/MovieCard';
 import SearchBar from '../components/SearchBar';
 import SubGenreSelect from '../components/SubGenreSelect';
 import TriggerSelect from '../components/TriggerSelect';
@@ -72,12 +72,12 @@ function Home({ user }) {
                 {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, you scared off all the movies.  Try again....</h5></div>}
               </div>
               : filteredMoviesByTitle?.map((movieObj) => (
-                  <MovieCard
-                    user={user}
-                    key={movieObj.id}
-                    movieObj={movieObj}
-                    setMovies={setMovies}
-                  />
+                <MovieCard
+                  user={user}
+                  key={movieObj.id}
+                  movieObj={movieObj}
+                  setMovies={setMovies}
+                />
               ))
           }
         </div>

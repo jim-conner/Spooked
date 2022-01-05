@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardImg, CardImgOverlay, CardText, ModalBody, CardFooter, Badge
+  Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
+import { getTotalTriggersValue } from '../../helpers/data/triggerData';
+import SpookMeter from './SpookMeter';
+import blood from '../assets/Blood-Falling-PNG-File.png';
 
 function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
+  const [triggerBarValue, setTriggerBarValue] = useState(0);
 
   const toggle = () => setModal(!modal);
 
@@ -16,13 +20,18 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
+    getTotalTriggersValue(movieId).then((resp) => setTriggerBarValue(resp));
   };
 
   return (
-    <CardImgOverlay
-      style={{ cursor: 'pointer' }}
+    <div>
+    <Button
+      size='lg'
+      className='modalBtn'
       onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
     >
+      View Detail
+      </Button>
       <Modal
       className='cardModal'
       isOpen={modal}
@@ -30,27 +39,21 @@ function MovieDetailModal({ movieObj }) {
       centered
       >
         <ModalBody>
-          <CardImg
-            alt="Movie Detail Poster"
-            src={fullMovieObj.poster}
-          />
+          <ModalHeader toggle={toggle}>
+            {fullMovieObj.title}
+          </ModalHeader>
           <div>
             <Badge color="primary">{fullMovieObj.Year}</Badge>
             <Badge color="primary">{fullMovieObj.Rated}</Badge>
             <Badge color="primary"><i className="fab fa-imdb"></i> {fullMovieObj.imdbRating}</Badge>
             <Badge
-                  color="primary"
-                  pill
-                >
-                  SubGenre: {movieObj.subGenreId}
+              color="primary"
+              pill
+            >
+              SubGenre: {movieObj.subGenreId}
             </Badge>
-
           </div>
-           <CardText>
-              {fullMovieObj.Plot}
-            </CardText>
-          <CardFooter>
-            <div>
+          <div>
             <Badge
               color="warning"
               pill
@@ -69,11 +72,25 @@ function MovieDetailModal({ movieObj }) {
             >
               Example3
             </Badge>
-          </div>
-          </CardFooter>
+            </div>
+           <CardText>
+              {fullMovieObj.Plot}
+            </CardText>
+            <ModalHeader>
+              Spook-O-Meter
+            </ModalHeader>
+            <div>
+              <SpookMeter
+                triggerBarValue={triggerBarValue}
+              />
+              <CardImg
+                alt="Movie Detail Poster"
+                src={blood}
+              />
+            </div>
         </ModalBody>
       </Modal>
-    </CardImgOverlay>
+    </div>
   );
 }
 
