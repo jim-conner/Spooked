@@ -42,22 +42,25 @@ function MovieCard({
     <>
   <Card color='dark' className='movieCard'>
     {
-      <Button className='favBtn' id='watchedToolTip'
-        onClick={(e) => { handleWatchedBool(e); }}>
+        <Button className='favBtn' id='watchedToolTip'
+          onClick={(e) => { handleWatchedBool(e); }}>
             {
               updatedMovieObj.watched === true
                 ? <i className='fas fa-check' style={{ color: 'orangered' }}></i>
                 : <i className='fas fa-plus' style={{ color: 'orangered' }}></i>
               }
+      <div>
+
             <Tooltip
               target="watchedToolTip"
-              placement='bottom'
+              placement='top'
               toggle={toggle}
               isOpen={tooltipOpen}
-              style={{ pointerEvents: 'none' }}
+              delay={{ show: '200', hide: '0' }}
             >
-              {updatedMovieObj.watched === true ? 'watched true' : 'watched false'}
+              {updatedMovieObj.watched === true ? 'Watched' : 'Mark as Watched'}
             </Tooltip>
+      </div>
           </Button>
     }
       <MovieDetailModal
