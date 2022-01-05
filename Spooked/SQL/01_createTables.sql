@@ -6,7 +6,7 @@
 
 -- create SubGenre Table
 Create Table dbo.SubGenre (
-	Id int NOT NULL identity primary key,
+	Id int NOT NULL primary key,
 	[Name] varchar(50) NOT NULL,
 );
 
@@ -35,8 +35,7 @@ Create Table dbo.[WatchList](
 -- create Trigger Table
 Create Table dbo.[Trigger] (
 	[Id] int NOT NULL identity primary key,
-	[Name] varchar(50) NOT NULL,
-	[Score] int NOT NULL,
+	[Name] varchar(50) NOT NULL
 );
 
 -- create MovieTrigger Table
@@ -45,6 +44,7 @@ Create Table dbo.[MovieTrigger] (
 	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[ImdbMovieId] varchar(50) NOT NULL,
 	[TriggerId] int NOT NULL,
+	[Score] int NOT NULL,
 	Constraint FK_MovieTrigger_Trigger Foreign Key (TriggerId)
 		References dbo.[Trigger] (Id)
 );
