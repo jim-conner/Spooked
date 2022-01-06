@@ -27,10 +27,10 @@ namespace Spooked.Controllers
             return Ok(_repo.GetAll());
         }
 
-        [HttpGet("ometer/{movieId}")]
-        public IActionResult GetTriggerValueTotal(Guid movieId)
+        [HttpGet("ometer/{imdbMovieId}")]
+        public IActionResult GetTriggerValueTotal(string imdbMovieId)
         {
-            var totalTriggerValues = _repo.GetTotalTriggersValue(movieId);
+            var totalTriggerValues = _repo.GetTotalTriggersValue(imdbMovieId);
 
             if (totalTriggerValues < 0)
             {

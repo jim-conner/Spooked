@@ -25,30 +25,30 @@ namespace Spooked.DataAccess
             return allTriggers;
         }
 
-        internal IEnumerable<Trigger> GetByMovieId(Guid movieId)
+        internal IEnumerable<MovieTrigger> GetByMovieId(string imdbMovieId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"Select * 
-                        From [Trigger] 
-                        Where MovieId = @movieId
-                        Order By [Name] Asc";
+                        From [ImdbMovieId] 
+                        Where ImdbMovieId = @imdbMovieId
+                        Order By [TriggerId] Asc";
 
 
-            var movieTriggers = db.Query<Trigger>(sql, new { movieId = movieId });
+            var movieTriggers = db.Query<MovieTrigger>(sql, new { imdbMovieId = imdbMovieId });
 
             return movieTriggers;
         }
 
-        internal int GetTotalTriggersValue(Guid movieId)
+        internal int GetMovieTriggersTotalScore(string imdbMovieId)
         {
             using var db = new SqlConnection(_connectionString);
 
-            var sql = @"Select Sum([Value])
-                    From [Trigger] 
-                    Where MovieId = @movieId";
+            var sql = @"Select Sum([Score])
+                    From [MovieTrigger] 
+                    Where ImdbMovieId = @imdbMovieId";
 
-            var totalValue = db.ExecuteScalar<int>(sql, new { movieId = movieId });
+            var totalValue = db.ExecuteScalar<int>(sql, new { imdbMovieId = imdbMovieId });
 
             if (totalValue > 100)
             {
