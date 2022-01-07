@@ -25,14 +25,14 @@ namespace Spooked.DataAccess
             return allTriggers;
         }
 
-        internal IEnumerable<Trigger> GetByMovieId(string imdbMovieId)
+        internal IEnumerable<Trigger> GetByImdbMovieId(string imdbMovieId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var sql = @"Select t.*
                         From[Trigger] t
                             Join MovieTrigger mt on t.Id = mt.TriggerId
-                        Where mt.ImdbMovieId = 'tt0083907'
+                        Where mt.ImdbMovieId = @imdbMovieId
                         Order By t.Id Asc";
 
             var movieTriggers = db.Query<Trigger>(sql, new { imdbMovieId = imdbMovieId });

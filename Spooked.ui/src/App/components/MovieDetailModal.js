@@ -58,6 +58,7 @@ function MovieDetailModal({ movieObj }) {
           {
             movieTriggers.map((movieTrigger) => (
               <Badge
+                style={{ margin: '2px' }}
                 color="warning"
                 pill
                 key={movieTrigger.id}

@@ -43,7 +43,7 @@ namespace Spooked.Controllers
         [HttpGet("movieTriggers/{imdbMovieId}")]
         public IActionResult GetTriggersByMovieId(string imdbMovieId)
         {
-            var movieTriggers = _repo.GetByMovieId(imdbMovieId);
+            var movieTriggers = _repo.GetByImdbMovieId(imdbMovieId);
 
             if (movieTriggers == null)
             {
