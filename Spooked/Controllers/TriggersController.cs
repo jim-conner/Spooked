@@ -30,7 +30,7 @@ namespace Spooked.Controllers
         [HttpGet("ometer/{imdbMovieId}")]
         public IActionResult GetTriggerValueTotal(string imdbMovieId)
         {
-            var totalTriggerValues = _repo.GetTotalTriggersValue(imdbMovieId);
+            var totalTriggerValues = _repo.GetMovieTriggersTotalScore(imdbMovieId);
 
             if (totalTriggerValues < 0)
             {
@@ -40,16 +40,16 @@ namespace Spooked.Controllers
             return Ok(totalTriggerValues);
         }
 
-        [HttpGet("movieTriggers/{movieId}")]
-        public IActionResult GetTriggersByMovieId(Guid movieId)
+        [HttpGet("movieTriggers/{imdbMovieId}")]
+        public IActionResult GetTriggersByMovieId(string imdbMovieId)
         {
-            var singleTrigger = _repo.GetByMovieId(movieId);
+            var movieTriggers = _repo.GetByMovieId(imdbMovieId);
 
-            if (singleTrigger == null)
+            if (movieTriggers == null)
             {
-                return NotFound($"No triggers found with MovieId: {movieId}.");
+                return NotFound($"No triggers found with MovieId: {imdbMovieId}.");
             }
-            return Ok(singleTrigger);
+            return Ok(movieTriggers);
         }
 
     }
