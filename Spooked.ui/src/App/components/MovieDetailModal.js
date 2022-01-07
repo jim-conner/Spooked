@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {
   Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
 } from 'reactstrap';
-import { getMoviesByTriggerAndSubGenre, returnLocalOmdb } from '../../helpers/data/movieData';
-import { getTotalTriggersValue } from '../../helpers/data/triggerData';
+import { returnLocalOmdb } from '../../helpers/data/movieData';
+import { getMovieTriggers, getTotalTriggersValue } from '../../helpers/data/triggerData';
 import SpookMeter from './SpookMeter';
 import blood from '../assets/Blood-Falling-PNG-File.png';
 
@@ -22,7 +22,7 @@ function MovieDetailModal({ movieObj }) {
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
     getTotalTriggersValue(imdbId).then((resp) => setTriggerBarValue(resp));
-    getMoviesByTriggerAndSubGenre(imdbId).then((resp) => setMovieTriggers(resp));
+    getMovieTriggers(imdbId).then((resp) => setMovieTriggers(resp));
   };
 
   return (
@@ -50,20 +50,19 @@ function MovieDetailModal({ movieObj }) {
             <Badge color="primary"><i className="fab fa-imdb"></i> {fullMovieObj.imdbRating}</Badge>
             <Badge
               color="primary"
-              pill
             >
               SubGenre: {movieObj.subGenreId}
             </Badge>
           </div>
           <div>
           {
-            movieTriggers.map((trigger) => (
+            movieTriggers.map((movieTrigger) => (
               <Badge
                 color="warning"
                 pill
-                key={trigger.id}
+                key={movieTrigger.id}
               >
-                {trigger.name}
+                {movieTrigger.name}
               </Badge>
             ))
           }
