@@ -56,9 +56,10 @@ function MovieCard({
               placement='top'
               toggle={toggle}
               isOpen={tooltipOpen}
-              delay={{ show: '200', hide: '0' }}
+              // delay={{ show: '200', hide: '0' }}
+              // style={{ tranisitionDelay: '0s' }}
             >
-              {updatedMovieObj.watched === true ? 'Watched' : 'Mark as Watched'}
+              {updatedMovieObj.watched === true ? '' : 'Mark as watched'}
             </Tooltip>
       </div>
           </Button>
@@ -72,13 +73,17 @@ function MovieCard({
       src={movieObj.poster}
       style={{ maxHeight: '400px' }}
     />
-      <Button
-      className='addToWatchListButton'
-      onClick={(e) => (handleWatchListAdd(e))}
-      size='lg'
-      >
-        Add to Watchlist
-      </Button>
+    {
+      user
+        ? <Button
+            className='addToWatchListButton'
+            onClick={(e) => (handleWatchListAdd(e))}
+            size='lg'
+          >
+            Add to Watchlist
+          </Button>
+        : ''
+    }
   </Card>
 </>
   );

@@ -55,7 +55,7 @@ function Home({ user }) {
             setSelectTrigger={setSelectTrigger}
           />
           <Button
-            onClick={((handleResetAll))}
+            onClick={(handleResetAll)}
             style={{ color: 'orangered' }}
             outline
           >

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
 } from 'reactstrap';
-import { returnLocalOmdb } from '../../helpers/data/movieData';
+import { getMoviesByTriggerAndSubGenre, returnLocalOmdb } from '../../helpers/data/movieData';
 import { getTotalTriggersValue } from '../../helpers/data/triggerData';
 import SpookMeter from './SpookMeter';
 import blood from '../assets/Blood-Falling-PNG-File.png';
@@ -12,6 +12,7 @@ function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
   const [triggerBarValue, setTriggerBarValue] = useState(0);
+  const [movieTriggers, setMovieTriggers] = useState([]);
 
   const toggle = () => setModal(!modal);
 
@@ -20,7 +21,8 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
-    getTotalTriggersValue(movieId).then((resp) => setTriggerBarValue(resp));
+    getTotalTriggersValue(imdbId).then((resp) => setTriggerBarValue(resp));
+    getMoviesByTriggerAndSubGenre(imdbId).then((resp) => setMovieTriggers(resp));
   };
 
   return (
@@ -54,24 +56,17 @@ function MovieDetailModal({ movieObj }) {
             </Badge>
           </div>
           <div>
-            <Badge
-              color="warning"
-              pill
-            >
-              Trigger1
-            </Badge>
-            <Badge
-              color="danger"
-              pill
-            >
-              Trigger2
-            </Badge>
-            <Badge
-              color="success"
-              pill
-            >
-              Example3
-            </Badge>
+          {
+            movieTriggers.map((trigger) => (
+              <Badge
+                color="warning"
+                pill
+                key={trigger.id}
+              >
+                {trigger.name}
+              </Badge>
+            ))
+          }
             </div>
            <CardText>
               {fullMovieObj.Plot}

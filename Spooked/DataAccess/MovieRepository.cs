@@ -25,18 +25,18 @@ namespace Spooked.DataAccess
             return movies;
         }
 
-        internal object getMoviesByTriggerAndSubGenre(Guid triggerId, int subGenreId)
+        internal object getMoviesByTriggerAndSubGenre(int triggerId, int subGenreId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var moviesByTrigger = @"Select *
                                     From Movie m
                                     Where NOT EXISTS (
-	                                    Select t.Id From Movie
-	                                    INNER JOIN [Trigger] t on m.Id = t.MovieId
-	                                    Where t.Id = @triggerId 
+	                                    Select mt.imdbMovieId From Movie
+	                                    INNER JOIN [MovieTrigger] mt on m.ImdbId = mt.imdbMovieId
+	                                    Where mt.TriggerId = 1
                                     )
-                                    AND m.SubGenreId = @subgenreId";
+                                    AND m.SubGenreId = 2";
 
             var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId, subgenreId = subGenreId });
 
@@ -56,16 +56,16 @@ namespace Spooked.DataAccess
             }
         }
 
-        internal object getMoviesByTrigger(Guid triggerId)
+        internal object getMoviesByTrigger(int triggerId)
         {
             using var db = new SqlConnection(_connectionString);
 
             var moviesByTrigger = @"Select *
                                     From Movie m
                                     Where NOT EXISTS (
-	                                    Select t.Id From Movie
-	                                    INNER JOIN [Trigger] t on m.Id = t.MovieId
-	                                    Where t.Id = @triggerId 
+	                                    Select mt.imdbMovieId From Movie
+	                                    INNER JOIN [MovieTrigger] mt on m.imdbId = mt.imdbMovieId
+	                                    Where mt.TriggerId = @triggerId 
                                     )";
 
             var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId });
