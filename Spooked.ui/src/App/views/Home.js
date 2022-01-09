@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'reactstrap';
+import { Button } from 'reactstrap';
 import '../App.scss';
 import {
   getAllMovies, getMoviesBySingleTrigger, getMoviesBySubGenre, getMoviesByTriggerAndSubGenre
@@ -22,6 +22,10 @@ function Home({ user }) {
     setSelectTrigger('');
   };
 
+  const handleBrowseAll = () => {
+    console.warn('browse all');
+  };
+
   useEffect(() => {
     if (select !== 0 && selectTrigger !== '') {
       getMoviesByTriggerAndSubGenre(selectTrigger, selectTrigger).then(setMovies);
@@ -41,7 +45,6 @@ function Home({ user }) {
   return (
     <div>
       <div className='homeHeader'>
-        <Form inline>
           <SearchBar
             search={search}
             setSearch={setSearch}
@@ -54,14 +57,22 @@ function Home({ user }) {
             selectTrigger={selectTrigger}
             setSelectTrigger={setSelectTrigger}
           />
-          <Button
-            onClick={(handleResetAll)}
-            style={{ color: 'orangered' }}
-            outline
-          >
-            Reset All
-          </Button>
-        </Form>
+      </div>
+      <div className='homeHeader'>
+        <Button
+          onClick={(handleBrowseAll)}
+          style={{ color: 'orangered', marginRight: '10px' }}
+          outline
+        >
+          Browse All
+        </Button>
+        <Button
+          onClick={(handleResetAll)}
+          style={{ color: 'orangered' }}
+          outline
+        >
+          Reset All
+        </Button>
       </div>
       {
         <div className='homeContainer'>
@@ -69,7 +80,7 @@ function Home({ user }) {
             filteredMoviesByTitle && filteredMoviesByTitle.length === 0
               ? <div className='homeHeader' style={{ color: 'orangered', justifyContent: 'center' }}>
                 {<div></div>}
-                {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, you scared off all the movies.  Try again....</h5></div>}
+                {<div><h5> <i className="fas fa-ghost fa-2x"></i> Oh dear, you scared off all the movies.  Keep Browsing....</h5></div>}
               </div>
               : filteredMoviesByTitle?.map((movieObj) => (
                 <MovieCard

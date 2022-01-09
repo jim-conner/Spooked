@@ -12,20 +12,20 @@
 
 .homeHeader {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   // margin: 2%;
 }
 
 .inputContainer {
-  padding: 2%;
+  padding: 1%;
 }
 
 .homeContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 1%;
 }
 
 .movieCard {
@@ -83,10 +83,13 @@
   background-color: transparent !important;
   margin: 2%;
   position:absolute;
-  top: 30%;
-  left: 25%;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  margin-top: 25%;
 }
 
 .modalBtn:hover{
-  background-color: rgba($color: orangered, $alpha: 0.5) !important;
+  // background-color: rgba($color: orangered, $alpha: 0.5) !important;
+  cursor: pointer;
 }

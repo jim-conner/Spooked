@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
+  Modal, CardText, ModalBody, Badge, CardImg, ModalHeader, Container
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
 import { getMovieTriggers, getTotalTriggersValue } from '../../helpers/data/triggerData';
@@ -27,13 +27,11 @@ function MovieDetailModal({ movieObj }) {
 
   return (
     <div>
-    <Button
-      size='lg'
+    <btn
       className='modalBtn'
       onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
     >
-      View Detail
-      </Button>
+      </btn>
       <Modal
       className='cardModal'
       isOpen={modal}
@@ -44,6 +42,7 @@ function MovieDetailModal({ movieObj }) {
           <ModalHeader toggle={toggle}>
             {fullMovieObj.title}
           </ModalHeader>
+            <Container><CardImg src={fullMovieObj.Poster} alt={fullMovieObj.Title}/></Container>
           <div>
             <Badge color="primary">{fullMovieObj.Year}</Badge>
             <Badge color="primary">{fullMovieObj.Rated}</Badge>

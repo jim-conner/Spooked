@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Form } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { getWatchListMovies } from '../../helpers/data/watchListData';
 import SearchBar from '../components/SearchBar';
 import WatchListCard from '../components/WatchListCard';
@@ -26,12 +26,10 @@ function WatchList({ user }) {
   return (
     <Container>
       <div className='homeHeader'>
-        <Form inline>
           <SearchBar
             search={search}
             setSearch={setSearch}
           />
-        </Form>
       </div>
       <div className='homeContainer'>
       {

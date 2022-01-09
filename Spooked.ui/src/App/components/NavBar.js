@@ -41,12 +41,13 @@ function NavBar({ user }) {
         color='dark'
         expand='sm'
         dark
+        sticky='top'
       >
         <NavbarBrand
           className='me-auto'
         >
           <i className="fas fa-ghost" style={{ color: 'orangered' }}/>
-            {' '} SPOOKED
+            {' '} SPOOK&#39;D
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
