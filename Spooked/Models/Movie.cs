@@ -13,7 +13,7 @@ namespace Spooked.Models
         public int SubGenreId { get; set; }
         public bool Watched { get; set; }
 
-        public IEnumerable<Trigger> TriggerList {get; set;}
+        //public IEnumerable<Trigger> TriggerList {get; set;}
     }
 
 }

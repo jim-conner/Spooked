@@ -7,9 +7,7 @@ namespace Spooked.Models
 {
     public class Trigger
     {
-        public Guid Id { get; set; }
-        public Guid MovieId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Value { get; set; }
     }
 }

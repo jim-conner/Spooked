@@ -9,12 +9,16 @@ const getAllTriggers = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const getMoviesByTriggers
+const getMovieTriggers = (imdbId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/triggers/movieTriggers/${imdbId}`)
+    .then((resp) => resolve(Object.values(resp.data)))
+    .catch((error) => reject(error));
+});
 
-const getTotalTriggersValue = (movieId) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/triggers/ometer/${movieId}`)
+const getTotalTriggersValue = (imdbId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/triggers/ometer/${imdbId}`)
     .then((resp) => resolve((resp.data)))
     .catch((error) => reject(error));
 });
 
-export { getAllTriggers, getTotalTriggersValue };
+export { getAllTriggers, getMovieTriggers, getTotalTriggersValue };

@@ -43,6 +43,7 @@ function SpookMeter({ triggerBarValue }) {
         color="danger"
         value={triggerBarValue}
       >
+        Spooky-ish
       </Progress>;
     }
     return component;

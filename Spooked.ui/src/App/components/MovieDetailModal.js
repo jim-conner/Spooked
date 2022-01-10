@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, CardText, ModalBody, Badge, Button, CardImg, ModalHeader
+  Modal, CardText, ModalBody, Badge, CardImg, ModalHeader, Container
 } from 'reactstrap';
 import { returnLocalOmdb } from '../../helpers/data/movieData';
-import { getTotalTriggersValue } from '../../helpers/data/triggerData';
+import { getMovieTriggers, getTotalTriggersValue } from '../../helpers/data/triggerData';
 import SpookMeter from './SpookMeter';
 import blood from '../assets/Blood-Falling-PNG-File.png';
 
@@ -12,6 +12,7 @@ function MovieDetailModal({ movieObj }) {
   const [modal, setModal] = useState(false);
   const [fullMovieObj, setFullMovieObj] = useState({});
   const [triggerBarValue, setTriggerBarValue] = useState(0);
+  const [movieTriggers, setMovieTriggers] = useState([]);
 
   const toggle = () => setModal(!modal);
 
@@ -20,18 +21,17 @@ function MovieDetailModal({ movieObj }) {
     toggle();
     returnLocalOmdb(movieId, imdbId)
       .then((resp) => setFullMovieObj(resp));
-    getTotalTriggersValue(movieId).then((resp) => setTriggerBarValue(resp));
+    getTotalTriggersValue(imdbId).then((resp) => setTriggerBarValue(resp));
+    getMovieTriggers(imdbId).then((resp) => setMovieTriggers(resp));
   };
 
   return (
     <div>
-    <Button
-      size='lg'
+    <btn
       className='modalBtn'
       onClick={(e) => handleClick(movieObj.id, movieObj.imdbId, e)}
     >
-      View Detail
-      </Button>
+      </btn>
       <Modal
       className='cardModal'
       isOpen={modal}
@@ -42,36 +42,30 @@ function MovieDetailModal({ movieObj }) {
           <ModalHeader toggle={toggle}>
             {fullMovieObj.title}
           </ModalHeader>
+            <Container><CardImg src={fullMovieObj.Poster} alt={fullMovieObj.Title}/></Container>
           <div>
             <Badge color="primary">{fullMovieObj.Year}</Badge>
             <Badge color="primary">{fullMovieObj.Rated}</Badge>
             <Badge color="primary"><i className="fab fa-imdb"></i> {fullMovieObj.imdbRating}</Badge>
             <Badge
               color="primary"
-              pill
             >
               SubGenre: {movieObj.subGenreId}
             </Badge>
           </div>
           <div>
-            <Badge
-              color="warning"
-              pill
-            >
-              Trigger1
-            </Badge>
-            <Badge
-              color="danger"
-              pill
-            >
-              Trigger2
-            </Badge>
-            <Badge
-              color="success"
-              pill
-            >
-              Example3
-            </Badge>
+          {
+            movieTriggers.map((movieTrigger) => (
+              <Badge
+                style={{ margin: '2px' }}
+                color="warning"
+                pill
+                key={movieTrigger.id}
+              >
+                {movieTrigger.name}
+              </Badge>
+            ))
+          }
             </div>
            <CardText>
               {fullMovieObj.Plot}
