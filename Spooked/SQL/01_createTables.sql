@@ -40,6 +40,7 @@ Create Table dbo.[Trigger] (
 
 -- create MovieTrigger Table
 -- Added non-clustered index on ImdbMovieId & TriggerId via Object Explorer
+-- Obj Expl F7-> expand table -> R-Click Indexes folder -> click new Index
 Create Table dbo.[MovieTrigger] (
 	Id uniqueidentifier NOT NULL primary key default(newsequentialid()),
 	[ImdbMovieId] varchar(50) NOT NULL,

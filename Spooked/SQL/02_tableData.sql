@@ -31,7 +31,8 @@ insert into SubGenre([Name])
 		('Found Footage')
 ;
 
-insert into [Trigger]([Name], [Value], [MovieId])
+-- this Trigger table schema is 'depreciated'
+insert into [Trigger]([Name], [Score], [MovieId])
 	values
 		('Animal Harm', 25, 'FFE5CC53-1111-EC11-B0C7-645D8657053E'),
 		('Suicide', 25, 'FFE5CC53-1111-EC11-B0C7-645D8657053E'),
