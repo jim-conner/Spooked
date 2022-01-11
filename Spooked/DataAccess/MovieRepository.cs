@@ -34,9 +34,9 @@ namespace Spooked.DataAccess
                                     Where NOT EXISTS (
 	                                    Select mt.imdbMovieId From Movie
 	                                    INNER JOIN [MovieTrigger] mt on m.ImdbId = mt.imdbMovieId
-	                                    Where mt.TriggerId = 1
+	                                    Where mt.TriggerId = @triggerId
                                     )
-                                    AND m.SubGenreId = 2";
+                                    AND m.SubGenreId = @subGenreId";
 
             var filteredMovies = db.Query<Movie>(moviesByTrigger, new { triggerId = triggerId, subgenreId = subGenreId });
 

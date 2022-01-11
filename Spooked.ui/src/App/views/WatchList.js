@@ -13,7 +13,6 @@ function WatchList({ user }) {
 
   useEffect(() => {
     getWatchListMovies().then((resp) => {
-      // setWatchListMovieArray(resp);
       const movies = resp.map((movie) => movie);
       setWatchlist(movies);
     });

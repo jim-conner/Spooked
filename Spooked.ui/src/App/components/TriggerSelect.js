@@ -13,8 +13,9 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
   }, []);
 
   const handleOnChange = (e) => {
-    setSelectTrigger(e.target.value);
+    setSelectTrigger(parseInt(e.target.value, 10));
   };
+
   return (
     <div className='inputContainer'>
       <FormGroup>
@@ -26,7 +27,7 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
               onChange={(e) => handleOnChange(e)}
             >
               {
-                  <option value="" defaultValue>
+                  <option value={0} defaultValue>
                     Hide movies by trigger
                   </option>
               }
@@ -47,7 +48,7 @@ function TriggerSelect({ selectTrigger, setSelectTrigger }) {
 }
 
 TriggerSelect.propTypes = {
-  selectTrigger: PropTypes.string.isRequired,
+  selectTrigger: PropTypes.number.isRequired,
   setSelectTrigger: PropTypes.func.isRequired
 };
 

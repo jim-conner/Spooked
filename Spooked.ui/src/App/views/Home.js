@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import { Button, FormGroup } from 'reactstrap';
 import '../App.scss';
 import {
   getAllMovies, getMoviesBySingleTrigger, getMoviesBySubGenre, getMoviesByTriggerAndSubGenre
@@ -14,21 +14,21 @@ function Home({ user }) {
   const [movies, setMovies] = useState(null);
   const [search, setSearch] = useState('');
   const [select, setSelect] = useState(0);
-  const [selectTrigger, setSelectTrigger] = useState('');
+  const [selectTrigger, setSelectTrigger] = useState(0);
 
   const handleResetAll = () => {
     setSearch('');
     setSelect(0);
-    setSelectTrigger('');
+    setSelectTrigger(0);
   };
 
-  const handleBrowseAll = () => {
-    console.warn('browse all');
-  };
+  // const handleBrowseAll = () => {
+  //   console.warn('browse all');
+  // };
 
   useEffect(() => {
-    if (select !== 0 && selectTrigger !== '') {
-      getMoviesByTriggerAndSubGenre(selectTrigger, selectTrigger).then(setMovies);
+    if (select && selectTrigger) {
+      getMoviesByTriggerAndSubGenre(selectTrigger, select).then(setMovies);
     } else if (select) {
       getMoviesBySubGenre(select).then(setMovies);
     } else if (selectTrigger) {
@@ -57,23 +57,34 @@ function Home({ user }) {
             selectTrigger={selectTrigger}
             setSelectTrigger={setSelectTrigger}
           />
-      </div>
-      <div className='homeHeader'>
-        <Button
-          onClick={(handleBrowseAll)}
-          style={{ color: 'orangered', marginRight: '10px' }}
-          outline
-        >
-          Browse All
-        </Button>
-        <Button
+          <div className='inputContainer'>
+              <FormGroup>
+              <Button
           onClick={(handleResetAll)}
           style={{ color: 'orangered' }}
           outline
         >
           Reset All
         </Button>
+              </FormGroup>
+          </div>
       </div>
+      {/* <div className='homeHeader'> */}
+        {/* <Button
+          onClick={(handleBrowseAll)}
+          style={{ color: 'orangered', marginRight: '10px' }}
+          outline
+        >
+          Browse All
+        </Button> */}
+        {/* <Button
+          onClick={(handleResetAll)}
+          style={{ color: 'orangered' }}
+          outline
+        >
+          Reset All
+        </Button>
+      </div> */}
       {
         <div className='homeContainer'>
           {

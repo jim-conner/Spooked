@@ -27,8 +27,8 @@ const getMoviesBySingleTrigger = (triggerId) => new Promise((resolve, reject) =>
     .catch((error) => reject(error));
 });
 
-const getMoviesByTriggerAndSubGenre = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/movies/filteredmovies`)
+const getMoviesByTriggerAndSubGenre = (triggerId, subGenreId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/movies/filteredmovies?triggerId=${triggerId}&subGenreId=${subGenreId}`)
     .then((resp) => resolve(Object.values(resp.data)))
     .catch((error) => reject(error));
 });
