@@ -7,7 +7,7 @@ using Spooked.Models;
 
 namespace Spooked.DataAccess
 {
-    public class MovieRepository
+    public class MovieRepository //add Interface here
     {
         readonly string _connectionString;
 
