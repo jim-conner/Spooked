@@ -42,7 +42,7 @@ namespace Spooked
             //registering method to allow for dependency injection
             services.AddScoped<IOmdbAPIService, OmdbAPIService>();
 
-            services.AddTransient<MovieRepository>();
+            services.AddTransient<IMovieRepository, MovieRepository>();
             services.AddTransient<SubGenreRepository>();
             services.AddTransient<TriggerRepository>();
             services.AddTransient<UserRepository>();

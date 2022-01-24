@@ -7,7 +7,7 @@ using Spooked.Models;
 
 namespace Spooked.DataAccess
 {
-    public class MovieRepository //add Interface here
+    public class MovieRepository : IMovieRepository
     {
         readonly string _connectionString;
 
@@ -16,7 +16,7 @@ namespace Spooked.DataAccess
             _connectionString = config.GetConnectionString("Spooked");
         }
 
-        internal IEnumerable<Movie> GetAll()
+        public IEnumerable<Movie> GetAll()
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -25,7 +25,7 @@ namespace Spooked.DataAccess
             return movies;
         }
 
-        internal object getMoviesByTriggerAndSubGenre(int triggerId, int subGenreId)
+        public object getMoviesByTriggerAndSubGenre(int triggerId, int subGenreId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -43,7 +43,7 @@ namespace Spooked.DataAccess
             return filteredMovies;
         }
 
-        internal Movie GetById(Guid Id)
+        public Movie GetById(Guid Id)
         {
             using var db = new SqlConnection(_connectionString);
             {
@@ -56,7 +56,7 @@ namespace Spooked.DataAccess
             }
         }
 
-        internal object getMoviesByTrigger(int triggerId)
+        public object getMoviesByTrigger(int triggerId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -73,7 +73,7 @@ namespace Spooked.DataAccess
             return filteredMovies;
         }
 
-        internal Movie GetByImdbId(string imdbId)
+        public Movie GetByImdbId(string imdbId)
         {
             using var db = new SqlConnection(_connectionString);
             {
@@ -87,7 +87,7 @@ namespace Spooked.DataAccess
             }
         }
 
-        internal object ToggleWatched(Guid id, Movie movieToUpdate)
+        public object ToggleWatched(Guid id, Movie movieToUpdate)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -107,7 +107,7 @@ namespace Spooked.DataAccess
             return updatedMovieToUpdate;
         }
 
-        internal object GetBySubGenreId(int subGenreId)
+        public object GetBySubGenreId(int subGenreId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -122,5 +122,6 @@ namespace Spooked.DataAccess
                 return filteredMovies;
 
         }
+
     }
 }

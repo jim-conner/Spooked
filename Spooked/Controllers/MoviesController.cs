@@ -13,9 +13,9 @@ namespace Spooked.Controllers
     public class MoviesController : ControllerBase
     {
 
-        private MovieRepository _repo;
+        private IMovieRepository _repo;
 
-        public MoviesController(MovieRepository repo)
+        public MoviesController(IMovieRepository repo)
         {
             _repo = repo;
         }
@@ -29,7 +29,9 @@ namespace Spooked.Controllers
         [HttpGet("filteredMovies")]
         public IActionResult getFilteredMovies(int triggerId, int subGenreId)
         {
-            return Ok(_repo.getMoviesByTriggerAndSubGenre(triggerId, subGenreId));
+            var filteredMovies = _repo.getMoviesByTriggerAndSubGenre(triggerId, subGenreId);
+
+            return Ok(filteredMovies);
         }
 
         [HttpGet("trigger/{triggerId}")]
@@ -41,6 +43,7 @@ namespace Spooked.Controllers
             {
                 return NotFound($"Didn't find any movies....");
             }
+
             return Ok(filteredMovies);
 
         }

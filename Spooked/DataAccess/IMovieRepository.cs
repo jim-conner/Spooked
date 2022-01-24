@@ -6,7 +6,7 @@ using Spooked.Models;
 
 namespace Spooked.DataAccess
 {
-    interface IMovieRepository
+    public interface IMovieRepository
     {
         IEnumerable<Movie> GetAll();
 
